@@ -1,0 +1,198 @@
+/** variables section */
+@property --deg {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+} /* initializes bg origin */
+@property --radius {
+    syntax: "<length>";
+    initial-value: 0px;
+    inherits: false;
+} /* initializes radius */
+
+/** customization section */
+body {
+    background: linear-gradient(var(--deg),#282727,#4c4b4b);
+    background-size: 100% 100%;
+    background-attachment: fixed; /* sets definite background */
+
+    display: flex;
+    justify-content: center;    
+    align-items: flex-start; /* aligns contents at the center on both axis*/
+
+    height: 100vh;
+    transform-origin: center left;
+    transition: 0.5s;
+    animation: rotate 10s infinite linear; /* rotates the background */ 
+}
+#body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+@keyframes rotate {
+    to {
+        --deg: 360deg; /* rotates the background 360 degrees */
+    }
+}
+
+#logo {
+    width: var(--radius); /* sets the logo size */
+    height: var(--radius);
+    background: conic-gradient(#000000,#4c4b4b00,#000000,#4c4b4b00,#000000,#4c4b4b00,#000000,#4c4b4b00,#000000);
+    border-radius: 50%;
+    align-self: flex-start;
+    margin-top:50px;
+
+    animation: popUp 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) 1 forwards,
+               retroRotate 10s infinite linear;
+}
+@keyframes popUp {
+    0% {
+        --radius: 0px;
+        transform: rotate(0deg)
+    }
+    100% {
+        --radius: 200px;
+        transform: rotate(360deg);
+    }
+}
+@keyframes retroRotate {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(-360deg);
+    }
+}
+#bar {
+    position: relative;
+    height: 5vh;
+    width: 20vw;
+    margin: 10px auto 10px auto;
+}
+
+#bar::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -10px;
+    height: 5vh;
+    width: 20vw;
+    color: white;
+    font-family: "Edu AU VIC WA NT Dots";
+    letter-spacing: 2px;
+    text-align: center;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    animation: typing 7s linear 1 forwards;
+}
+@keyframes typing {
+    0%{content:"";}
+    15%{content:"H";}
+    16% {content: "Hi";}
+    17% {content: "Hi, ";}
+    18% {content: "Hi, i";}
+    19% {content: "Hi, it";}
+    20% {content: "Hi, it's";}
+    21% {content: "Hi,it's D";}
+    22% {content: "Hi,it's De";}
+    23% {content: "Hi,it's Des";}
+    24% {content: "Hi,it's Desc";}
+    25% {content: "Hi,it's Desca";}
+    26% {content: "Hi,it's Descar";}
+    27% {content: "Hi,it's Descart";}
+    28% {content: "Hi,it's Descarte";}
+    29% {content: "Hi,it's Descartes";}
+    35% { content: "Hi, it's Descarte"; }
+    36% { content: "Hi, it's Descart"; }
+    37% { content: "Hi, it's Descar"; }
+    38% { content: "Hi, it's Desca"; }
+    39% { content: "Hi, it's Desc"; }
+    40% { content: "Hi, it's Des"; }
+    41% { content: "Hi, it's De"; }
+    42% { content: "Hi, it's D"; }
+    43% { content: "Hi, it's"; }
+    44% { content: "Hi, it"; }
+    45% { content: "Hi, i"; }
+    46% { content: "Hi, "; }
+    47% { content: "Hi"; }
+    48% { content: "H"; }
+    49% { content: ""; }
+
+    51%{content:"I";}
+    51%{content:"I'm";}
+    51%{content:"I'm y";}
+    52%{content:"I'm yo";}
+    53%{content:"I'm you";}
+    54%{content:"I'm your";}
+    55%{content:"I'm yours";}
+    56%{content:"I'm yours P";}
+    56%{content:"I'm yours Pe";}
+    57%{content:"I'm yours Per";}
+    58%{content:"I'm yours Pers";}
+    59%{content:"I'm yours Perso";}
+    60%{content:"I'm yours Person";}
+    61%{content:"I'm yours Persona";}
+    62%{content:"I'm yours Personal";}
+    63%{content:"I'm yours Personal A";}
+    64%{content:"I'm yours Personal As";}
+    65%{content:"I'm yours Personal Ass";}
+    66%{content:"I'm yours Personal Assis";}
+    67%{content:"I'm yours Personal Assist";}
+    68%{content:"I'm yours Personal Assistant";}
+    71% { content: "I'm yours Personal Assistant"; }
+    72% { content: "I'm yours Personal Assist"; }
+    73% { content: "I'm yours Personal Assis"; }
+    74% { content: "I'm yours Personal Ass"; }
+    75% { content: "I'm yours Personal As"; }
+    76% { content: "I'm yours Personal A"; }
+    77% { content: "I'm yours Personal"; }
+    78% { content: "I'm yours Persona"; }
+    79% { content: "I'm yours Person"; }
+    80% { content: "I'm yours Perso"; }
+    81% { content: "I'm yours Pers"; }
+    82% { content: "I'm yours Per"; }
+    83% { content: "I'm yours Pe"; }
+    84% { content: "I'm yours P"; }
+    85% { content: "I'm yours"; }
+    86% { content: "I'm your"; }
+    87% { content: "I'm you"; }
+    88% { content: "I'm yo"; }
+    89% { content: "I'm y"; }
+    90% { content: "I'm"; }
+    91% { content: "I"; }
+    92% { content: ""; }
+
+    99% { content: "Let's"; }
+    100% { content: "Let's proceed!"; }
+}
+img {
+    height: 5vh;
+    width: auto;
+    position: relative;
+    margin-top: 10px;
+    left: 5px;
+    transition: all 0.5s;
+}
+img:hover {transform: scale(1.5);}
+button {
+    background: #00000000;
+    border: 0;
+}
+input {
+    margin-top: 20px;
+    left: -10px;
+    background: #00000027;
+    border: 0;
+    color: white;
+}
+input:active, input:focus {
+    border: 0;
+}
