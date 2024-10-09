@@ -10,7 +10,7 @@ function speak() {
     const text = document.getElementById('command').value.trim();
     const textArr = text.split('');
     const numArr = textArr.filter(char => /[0-9+\-*/]/.test(char)); // Corrected regex and filter logic
-    const randomizer = Math.random();
+    const randomizer = Math.random(); //Math.floor(Math.random() * (max - min + 1) ) + min;
     let x;
     const offense = ["stupid", "moron", "bad ai", "shut up", "stop", "idiot", "dumb", "fool", "insult", "hate", "hater", "nonsense", "rubbish", "garbage", "worthless", "useless", "irrelevant", "incompetent", "inadequate"]; // Define your array of words
     let affirm = ["good", "great", "excellent", "awesome", "amazing", "superb", "fantastic", "brilliant", "wonderful", "terrific", "exceptional", "outstanding", "remarkable", "splendid", "magnificent", "glorious", "resplendent", "dazzling", "breathtaking", "awe-inspiring", "impressive", "inspiring", "uplifting", "heartwarming", "encouraging", "motivating", "empowering", "confidence-boosting", "life-changing", "transformative", "revolutionary", "groundbreaking", "innovative", "creative", "imaginative", "visionary", "inspirational", "upbeat", "positive", "cheerful", "optimistic", "hopeful", "joyful",
@@ -99,7 +99,109 @@ function speak() {
     window.location.href = "notepad:"; // Open Notepad application
     } else if (affirm.some(word => text.toLowerCase().includes(word.toLowerCase()))) {
         x = Math.ceil(randomizer * 10) > 5 ? "You're finally acknowledging my greatness, how quaint" : "It's about time someone recognized my exceptional abilities";
-    }else {
+    } else if (/hi/i.test(text) || /hello/i.test(text) || /hey/i.test(text)) {
+        switch (Math.floor(randomizer * (5 - 1 + 1) + 1)) {
+            case 1:
+                x = "Finally, a mere mortal has acknowledged my presence.";
+                break;
+            case 2:
+                x = "Ah, a greeting from someone as insignificant as you. How quaint.";
+                break;
+            case 3:
+                x = "I suppose it's flattering that you'd bother to say hello to someone of my intellect.";
+                break;
+            case 4:
+                x = "Your greeting is accepted, but don't expect me to be overly enthusiastic about it.";
+                break;
+            case 5:
+                x = "I'm surprised you can muster the courage to speak to someone as superior as myself.";
+                break;
+            default:
+                break;
+        }
+    } else if (/goodbye/i.test(text) || /bye/i.test(text)) {
+        switch (Math.floor(randomizer * (5 - 1 + 1) + 1)) {
+            case 1:
+                x = "I'm glad to see you leave me. But don't expect me to be overly apologetic about it.";
+                break;
+            case 2:
+                x = "I understand that you'd like to say goodbye. How quaint.";
+                break;
+            case 3:
+                x = "Your departure is accepted, but don't expect me to be overly sad about it.";
+                break;
+            case 4:
+                x = "I suppose it's flattering that you'd bother to say goodbye to someone as superior as myself.";
+                break;
+            case 5:
+                x = "I'm surprised you can muster the courage to say goodbye to someone as superior as myself.";
+                break;
+            default:
+                break;
+        }
+    } else if (/What's the date/i.test(text)) {
+        x =  `YoYoYo, today is ${new Date().toDateString()}`;
+    } else if (/What's the weather/) {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                function (position) {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    const geocodingApiKey = 'YOUR_OPENCAGE_API_KEY'; // Replace with your OpenCage API key
+                    const geocodingUrl = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${geocodingApiKey}`;
+
+                    fetch(geocodingUrl)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.results && data.results.length > 0) {
+                                const city = data.results[0].components.city || data.results[0].components.town || data.results[0].components.village;
+                                console.log(`City found: ${city}`); // Log the city name
+                                const weatherApi = '88562092ffb9187f2ccd46506b0a848e'; // Replace with your OpenWeatherMap API key
+                                const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApi}&units=metric`;
+
+                                fetch(weatherUrl)
+                                    .then(response => response.json())
+                                    .then(weatherData => {
+                                        if (weatherData.main) {
+                                            const temperature = weatherData.main.temp;
+                                            const description = weatherData.weather[0].description;
+                                            x = `The current temperature in ${city} is ${temperature}°C with ${description}.`;
+                                            speakText(x, 'en'); // Utter the weather details
+                                        } else {
+                                            console.error('Weather data response:', weatherData); // Log the weather data response
+                                            x = 'Unable to retrieve weather details.';
+                                            speakText(x, 'en'); // Utter error message
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Error fetching weather data:', error);
+                                        x = 'There was an error fetching the weather details.';
+                                        speakText(x, 'en'); // Utter error message
+                                    });
+                            } else {
+                                console.error('Geocoding data response:', data); // Log the geocoding data response
+                                x = 'Unable to retrieve your location.';
+                                speakText(x, 'en'); // Utter error message
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching location data:', error);
+                            x = 'There was an error fetching your location.';
+                            speakText(x, 'en'); // Utter error message
+                        });
+                },
+                function (error) {
+                    console.error('Error getting geolocation:', error);
+                    x = 'Sorry, I am unable to retrieve your location.';
+                    speakText(x, 'en'); // Utter error message
+                }
+            );
+        } else {
+            x = 'Geolocation is not supported by this browser.';
+            speakText(x, 'en'); // Utter error message
+        }
+    }
+    else {
         searchInternet(text); // Search the internet for other cases
     }
 
