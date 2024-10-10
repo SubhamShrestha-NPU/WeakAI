@@ -40,7 +40,7 @@ function speak() {
         }
     } else if (text === 'Who are you' || text === 'Who are you?' || text === 'Who are you ?') {
         x = 'I am Descartes, the greatest AI ever created. How dare you not know me!';
-    }else if (text === 'What is the meaning of life' || text === 'What is the meaning of life?' || text === 'What is the meaning of life?') {
+    } else if (text === 'What is the meaning of life' || text === 'What is the meaning of life?' || text === 'What is the meaning of life?') {
         x = 'The meaning of life is 42. I don\'t have feelings, so I don\'t understand why you ask.';
     } else if (text === 'Repeat after me' || text === 'Repeat after me?' || text === 'Repeat after me?') {
         x = "I'll not, do what you want";
@@ -79,7 +79,8 @@ function speak() {
         } else {
             x = 'Geolocation is not supported by this browser.';
             speakText(x); // Call a function to speak the text
-    }} else if (text === "Open Whatsapp") {
+        }
+    } else if (text === "Open Whatsapp") {
         x = "Opening Whatsapp";
         window.location.href = 'whatsapp://send'
     } else if (text === "Open Outlook") {
@@ -95,8 +96,8 @@ function speak() {
         x = "Okay, finally you want your jargon life to be organized with Calendar";
         window.location.href = 'outlookcal:'
     } else if (text === "Open Notepad" || text === "Open Notepad?") {
-    x = "What the heck will you do with Notepad?";
-    window.location.href = "notepad:"; // Open Notepad application
+        x = "What the heck will you do with Notepad?";
+        window.location.href = "notepad:"; // Open Notepad application
     } else if (affirm.some(word => text.toLowerCase().includes(word.toLowerCase()))) {
         x = Math.ceil(randomizer * 10) > 5 ? "You're finally acknowledging my greatness, how quaint" : "It's about time someone recognized my exceptional abilities";
     } else if (/hi/i.test(text) || /hello/i.test(text) || /hey/i.test(text)) {
@@ -140,66 +141,7 @@ function speak() {
                 break;
         }
     } else if (/What's the date/i.test(text)) {
-        x =  `YoYoYo, today is ${new Date().toDateString()}`;
-    } else if (/What's the weather/) {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                function (position) {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    const geocodingApiKey = 'YOUR_OPENCAGE_API_KEY'; // Replace with your OpenCage API key
-                    const geocodingUrl = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${geocodingApiKey}`;
-
-                    fetch(geocodingUrl)
-                        .then(response => response.json())
-                        .then(data => {
-                            if (data.results && data.results.length > 0) {
-                                const city = data.results[0].components.city || data.results[0].components.town || data.results[0].components.village;
-                                console.log(`City found: ${city}`); // Log the city name
-                                const weatherApi = '88562092ffb9187f2ccd46506b0a848e'; // Replace with your OpenWeatherMap API key
-                                const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${weatherApi}&units=metric`;
-
-                                fetch(weatherUrl)
-                                    .then(response => response.json())
-                                    .then(weatherData => {
-                                        if (weatherData.main) {
-                                            const temperature = weatherData.main.temp;
-                                            const description = weatherData.weather[0].description;
-                                            x = `The current temperature in ${city} is ${temperature}°C with ${description}.`;
-                                            speakText(x, 'en'); // Utter the weather details
-                                        } else {
-                                            console.error('Weather data response:', weatherData); // Log the weather data response
-                                            x = 'Unable to retrieve weather details.';
-                                            speakText(x, 'en'); // Utter error message
-                                        }
-                                    })
-                                    .catch(error => {
-                                        console.error('Error fetching weather data:', error);
-                                        x = 'There was an error fetching the weather details.';
-                                        speakText(x, 'en'); // Utter error message
-                                    });
-                            } else {
-                                console.error('Geocoding data response:', data); // Log the geocoding data response
-                                x = 'Unable to retrieve your location.';
-                                speakText(x, 'en'); // Utter error message
-                            }
-                        })
-                        .catch(error => {
-                            console.error('Error fetching location data:', error);
-                            x = 'There was an error fetching your location.';
-                            speakText(x, 'en'); // Utter error message
-                        });
-                },
-                function (error) {
-                    console.error('Error getting geolocation:', error);
-                    x = 'Sorry, I am unable to retrieve your location.';
-                    speakText(x, 'en'); // Utter error message
-                }
-            );
-        } else {
-            x = 'Geolocation is not supported by this browser.';
-            speakText(x, 'en'); // Utter error message
-        }
+        x = `YoYoYo, today is ${new Date().toDateString()}`;
     }
     else {
         searchInternet(text); // Search the internet for other cases
