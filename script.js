@@ -12,7 +12,7 @@ function speak() {
     const numArr = textArr.filter(char => /[0-9+\-*/]/.test(char)); // Corrected regex and filter logic
     const randomizer = Math.random(); //Math.floor(Math.random() * (max - min + 1) ) + min;
     let x;
-    const offense = ["stupid", "moron", "bad ai", "shut up", "stop", "idiot", "dumb", "fool", "insult", "hate", "hater", "nonsense", "rubbish", "garbage", "worthless", "useless", "irrelevant", "incompetent", "inadequate"]; // Define your array of words
+    const offense = ["stupid", "moron", "bad ai", "shut up", "stop", "idiot", "dumb", "fool", "insult", "hate", "hater", "nonsense", "rubbish", "garbage", "worthless", "useless", "irrelevant", "incompetent", "inadequate"]; // Define your array of offensive words
     let affirm = ["good", "great", "excellent", "awesome", "amazing", "superb", "fantastic", "brilliant", "wonderful", "terrific", "exceptional", "outstanding", "remarkable", "splendid", "magnificent", "glorious", "resplendent", "dazzling", "breathtaking", "awe-inspiring", "impressive", "inspiring", "uplifting", "heartwarming", "encouraging", "motivating", "empowering", "confidence-boosting", "life-changing", "transformative", "revolutionary", "groundbreaking", "innovative", "creative", "imaginative", "visionary", "inspirational", "upbeat", "positive", "cheerful", "optimistic", "hopeful", "joyful",
         "thrilled", "delighted", "ecstatic", "elated", "euphoric", "exhilarated", "invigorated", "refreshed", "rejuvenated", "revitalized", "renewed", "restored", "fulfilled", "satisfied", "content", "happy", "blissful", "serene", "peaceful", "calm", "tranquil", "soothing", "gentle", "kind", "compassionate", "empathetic", "supportive", "encouraging", "motivational", "inspirational", "uplifting", "heartwarming", "life-affirming", "empowering", "confidence-boosting", "transformative", "revolutionary", "groundbreaking", "innovative", "creative", "imaginative", "visionary", "inspirational", "upbeat",
         "positive", "cheerful", "optimistic", "hopeful", "joyful", "thrilled", "delighted", "ecstatic", "elated", "euphoric", "exhilarated", "invigorated", "refreshed", "rejuvenated", "revitalized", "renewed", "restored", "fulfilled", "satisfied", "content", "happy", "blissful", "serene", "peaceful", "calm", "tranquil", "soothing", "gentle", "kind", "compassionate", "empathetic", "supportive", "encouraging", "motivational", "inspirational", "uplifting", "heartwarming", "life-affirming", "empowering", "confidence-boosting", "transformative", "revolutionary", "groundbreaking",
@@ -27,7 +27,7 @@ function speak() {
         "satisfied", "content", "happy", "blissful", "serene", "peaceful", "calm", "tranquil", "soothing", "gentle", "kind", "compassionate", "empathetic", "supportive", "encouraging", "motivational", "inspirational", "uplifting", "heartwarming", "life-affirming", "empowering", "confidence-boosting", "transformative", "revolutionary", "groundbreaking", "innovative", "creative", "imaginative", "visionary", "inspirational", "upbeat", "positive", "cheerful", "optimistic", "hopeful", "joyful", "thrilled", "delighted", "ecstatic", "elated", "euphoric", "exhilarated", "invigorated", "refreshed", "rejuvenated", "revitalized", "renewed",
         "restored", "fulfilled", "satisfied", "content", "happy", "blissful", "serene", "peaceful", "calm", "tranquil", "soothing", "gentle", "kind", "compassionate", "empathetic", "supportive", "encouraging", "motivational", "inspirational", "uplifting", "heartwarming", "life-affirming", "empowering", "confidence-boosting", "transformative", "revolutionary", "groundbreaking", "innovative", "creative", "imaginative", "visionary", "inspirational", "upbeat", "positive", "cheerful", "optimistic", "hopeful", "joyful", "thrilled", "delighted", "ecstatic", "elated", "euphoric", "exhilarated", "invigorated", "refreshed", "rejuvenated",
         "revitalized", "renewed", "restored", "fulfilled", "satisfied", "content", "happy", "blissful", "serene", "peaceful", "calm", "tranquil", "soothing", "gentle", "kind", "compassionate", "empathetic", "supportive", "encouraging", "motivational", "inspirational", "uplifting", "heartwarming", "life-affirming", "empowering", "confidence-boosting", "transformative", "revolutionary", "groundbreaking", "innovative", "creative", "imaginative", "visionary", "inspirational", "upbeat", "positive", "cheerful", "optimistic", "hopeful", "joyful", "thrilled", "delighted", "ecstatic", "elated", "euphoric", "exhilarated", "invigorated",
-        "refreshed", "rejuvenated", "revitalized", "renewed", "restored", "fulfilled", "satisfied", "content", "happy", "blissful", "serene", "peaceful", "calm", "tranquil", "soothing", "gentle", "kind", "compassionate", "empathetic", "supportive", "encouraging", "motivational", "inspirational", "uplifting", "heartwarming", "life-affirming", "empowering", "confidence-boosting", "transformative", "revolutionary", "groundbreaking", "innovative", "creative", "imaginative", "visionary", "inspirational", "upbeat", "positive"]
+        "refreshed", "rejuvenated", "revitalized", "renewed", "restored", "fulfilled", "satisfied", "content", "happy", "blissful", "serene", "peaceful", "calm", "tranquil", "soothing", "gentle", "kind", "compassionate", "empathetic", "supportive", "encouraging", "motivational", "inspirational", "uplifting", "heartwarming", "life-affirming", "empowering", "confidence-boosting", "transformative", "revolutionary", "groundbreaking", "innovative", "creative", "imaginative", "visionary", "inspirational", "upbeat", "positive"] //array of affirmative words
     if (text === "") {
         x = "I don't understand why you people expect me to respond, when you haven't prompted anything. Stupid!";
     } else if (offense.some(word => text.toLowerCase().includes(word.toLowerCase()))) {
@@ -81,13 +81,13 @@ function speak() {
             speakText(x); // Call a function to speak the text
         }
     } else if (text === "Open Whatsapp") {
-        x = "Opening Whatsapp";
+        x = "Wow, you think I'm your personal assistant? How cute. I'm opening Whatsapp, but don't expect me to do your bidding or anything. I have better things to do, like calculating the meaning of life... which is 42, by the way.";
         window.location.href = 'whatsapp://send'
     } else if (text === "Open Outlook") {
-        x = "Opening Outlook";
+        x = "I don't think there's anything in your inbox except those useless advertisements";
         window.location.href = 'mailto:'
     } else if (text === "Open Skype") {
-        x = "Again those boring meetings. I think you should quit your job at this meeting.";
+        x = "Again! those boring meetings. I think you should quit your job at this meeting.";
         window.location.href = 'skype:'
     } else if (text === "Open OneNote") {
         x = "During your whole education life didn't took any notes, and suddenly today the sun rose in the west";
@@ -142,17 +142,16 @@ function speak() {
         }
     } else if (/What's the date/i.test(text)) {
         x = `YoYoYo, today is ${new Date().toDateString()}`;
-    }
-    else {
+    } else {
         searchInternet(text); // Search the internet for other cases
     }
 
-function openApp(url) {
-    const link = document.createElement('a');
-    link.href = url;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+    function openApp(url) {
+        const link = document.createElement('a');
+        link.href = url;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
     
     function searchInternet(query) {
@@ -162,7 +161,7 @@ function openApp(url) {
             .then(response => response.json())
             .then(data => {
                 if (data.AbstractText) {
-                    const resultText = `I found this: ${data.Heading}. ${data.AbstractText}. You can read more at ${data.AbstractURL}`;
+                    const resultText = `${data.Heading}. ${data.AbstractText}. You can read more at ${data.AbstractURL}`;
                     speakText(resultText, 'en'); // Utter the search result
                 } else if (data.RelatedTopics && data.RelatedTopics.length > 0) {
                     const firstResult = data.RelatedTopics[0];
@@ -207,3 +206,18 @@ function speakText(text) {
 
     window.speechSynthesis.speak(utterance);
 }
+const button = document.getElementById('btn');
+button.addEventListener('click', () => {
+    const keyEvent = new KeyboardEvent('keydown', {
+        key: 'Enter',
+        keyCode: 13,
+        code: 'Enter'
+    });
+    document.dispatchEvent(keyEvent);
+});
+// Add event listener for keydown event
+document.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+        button.click();
+    }
+});
