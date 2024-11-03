@@ -3,34 +3,33 @@
     syntax: "<angle>";
     initial-value: 0deg;
     inherits: false;
-} /* initializes bg origin */
+} /* Initialize background rotation angle */
 @property --radius {
     syntax: "<length>";
     initial-value: 0px;
     inherits: false;
-} /* initializes radius */
-
+} /* Initialize radius */
 /** customization section */
 body {
-    background: linear-gradient(var(--deg),#282727,#4c4b4b);
+    background: linear-gradient(var(--deg),#282727,#4c4b4b); /* Set background gradient and properties */
     background-size: 100% 100%;
-    background-attachment: fixed; /* sets definite background */
+    background-attachment: fixed; /* Fixed background */
 
     display: flex;
-    justify-content: center;    
-    align-items: flex-start; /* aligns contents at the center on both axis*/
+    justify-content: center; /* Center content horizontally */
+    align-items: flex-start; /* Align content at the top */
 
-    height: 100vh;
-    transform-origin: center left;
-    transition: 0.5s;
-    animation: rotate 10s infinite linear; /* rotates the background */ 
+    height: 100vh; /* Full viewport height */
+    transform-origin: center left; /* Set transform origin */
+    transition: 0.5s; /* Smooth transition */
+    animation: rotate 10s infinite linear; /* Rotate background */ 
 }
 #body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+    display: flex; /* Flex container for body content */
+    flex-direction: column; /* Column direction for flex items */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+    padding: 10px; /* Padding for body content */
 }
 @keyframes rotate {
     to {
@@ -40,14 +39,14 @@ body {
 
 #logo {
     width: var(--radius); /* sets the logo size */
-    height: var(--radius);
+    height: var(--radius); 
     background: conic-gradient(#000000,#4c4b4b00,#000000,#4c4b4b00,#000000,#4c4b4b00,#000000,#4c4b4b00,#000000);
-    border-radius: 50%;
+    border-radius: 50%; /* ensures proper circle */
     align-self: flex-start;
     margin-top:50px;
 
-    animation: popUp 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) 1 forwards,
-               retroRotate 10s infinite linear;
+    animation: popUp 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) 1 forwards, /* makes the disc appear, and makes it round once in the same direction as the background */
+               retroRotate 10s infinite linear; /* makes the disc rotate infinitely anti-clockwise */
 }
 @keyframes popUp {
     0% {
@@ -73,7 +72,7 @@ body {
     height: 5vh;
     width: 20vw;
     margin: 10px auto 10px auto;
-}
+} /* basic styling for the section, which holds the introduction message */
 
 #bar::after {
     content: "";
@@ -92,7 +91,8 @@ body {
     align-items: center;
 
     animation: typing 7s linear 1 forwards;
-}
+}  /* styling for the introduction message */
+
 @keyframes typing {
     0%{content:"";}
     15%{content:"H";}
@@ -174,25 +174,27 @@ body {
     100% { content: "Let's proceed!"; }
 }
 img {
-    height: 5vh;
-    width: auto;
-    position: relative;
-    margin-top: 10px;
-    left: 5px;
-    transition: all 0.5s;
+    height: 5vh; /* Set image height to 5% of viewport height */
+    width: auto; /* Maintain aspect ratio for image width */
+    position: relative; /* Relative positioning for image */
+    margin-top: 10px; /* Margin at the top of the image */
+    left: 5px; /* Position adjustment for the image */
+    transition: all 0.5s; /* Smooth transition for image properties */
 }
-img:hover {transform: scale(1.5);}
+img:hover {
+    transform: scale(1.5); /* Scale image to 1.5 times its size on hover */
+}
 button {
-    background: #00000000;
-    border: 0;
+    background: #00000000; /* Transparent background for button */
+    border: 0; /* Remove border from button */
 }
 input {
-    margin-top: 20px;
-    left: -10px;
-    background: #00000027;
-    border: 0;
-    color: white;
+    margin-top: 20px; /* Margin at the top of the input field */
+    left: -10px; /* Position adjustment for the input field */
+    background: #00000027; /* Semi-transparent background for the input field */
+    border: 0; /* Remove border from the input field */
+    color: white; /* Set text color to white for the input field */
 }
 input:active, input:focus {
-    border: 0;
+    border: 0; /* Remove border when input field is active or focused */
 }
