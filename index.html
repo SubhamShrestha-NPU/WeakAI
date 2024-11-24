@@ -11,14 +11,33 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div id="extension">
+        <div id="sidepanel">
+            <button class="closeBtn" onclick="closeNav()">&times;</button>
+            <button class="options">Personalities</button>
+            <button class="options">Voice</button>
+            <button class="options">Theme</button>
+            <button class="options">How To</button>
+        </div>
+        <div id="modalTray">
+            <div class="modal"></div>
+            <div class="modal"></div>
+            <div class="modal"></div>
+            <div class="modal"></div>
+        </div>
+        <button class="openBtn" onclick="openNav()">
+            <img src="Assets/hamburger.png" alt="menu" id="hamburger-img"/> <!-- each bar: 150*101.43px and gap: 15px -->
+        </button>
+    </div>
     <div id="body">
         <div id="logo"></div>
         <div id="bar"></div> <br/>
-        <input type="text" name="command" id="command" value=""> <!-- Input field for user command -->
+        <input type="text" name="command" id="command" value=""><br/> <!-- Input field for user command -->
         <button onclick="speak()" id="btn"> <!-- button to trigger speak() function -->
-            <img src="Assets/plasmaBall.gif" alt="mic"> <!-- animated button -->
+             Press Enter<!-- animated button -->
         </button>
     </div>
     <script src="script.js"></script>
+    <script src="sidebar.js"></script>
 </body>
 </html>
