@@ -14,16 +14,14 @@
     <div id="extension">
         <div id="sidepanel">
             <button class="closeBtn" onclick="closeNav()">&times;</button>
-            <button class="options">Personalities</button>
-            <button class="options">Voice</button>
-            <button class="options">Theme</button>
-            <button class="options">How To</button>
+            <button class="options" onclick="options('persona')">Personalities</button>
+            <button class="options" onclick="options('voice')">Voice</button>
+            <button class="options" onclick="options('theme')">Themes</button>
+            <button class="options" onclick="options('tutorial')">How To</button>
+            <button class="options" onclick="options('games')">Games</button>
         </div>
         <div id="modalTray">
-            <div class="modal"></div>
-            <div class="modal"></div>
-            <div class="modal"></div>
-            <div class="modal"></div>
+            <div id="modal"></div>
         </div>
         <button class="openBtn" onclick="openNav()">
             <img src="Assets/hamburger.png" alt="menu" id="hamburger-img"/> <!-- each bar: 150*101.43px and gap: 15px -->
