@@ -1,6 +1,48 @@
+"use strict";
+/* PRE-SETUP */
+let empty = [];
+let offensive = [];
+let affirmative = [];
+let nonsensicalMath = [];
+let introductory = [];
+let meaningOfLife = [];
+let repeatAfterMe = [];
+let openWhatsApp = [];
+let openOutLook = [];
+let openSkype = [];
+let openOneNote = [];
+let openCalendar = [];
+let openNotePad = [];
+let hi = [];
+let bye = [];
+
+// Fetch the JSON file once
+fetch('response.json')
+    .then(response => response.json()) // Parse the JSON data
+    .then(data => {
+        // Assign arrays to variables
+        empty = data.empty;
+        offensive = data.offensive;
+        affirmative = data.affirmative;
+        nonsensicalMath = data.nonsensicalMath;
+        introductory = data.introductory;
+        meaningOfLife = data.meaningOfLife;
+        repeatAfterMe = data.repeatAfterMe;
+        openWhatsApp = data.openWhatsApp;
+        openOutLook = data.openOutLook;
+        openSkype = data.openSkype;
+        openOneNote = data.openOneNote;
+        openCalendar = data.openCalendar;
+        openNotePad = data.openNotePad;
+        hi = data.hi;
+        bye = data.bye;
+    })
+    .catch(error => console.error('Error fetching JSON:', error));
+    
 let voices = [];
 let selectedVoice;
 
+/* LIVE HANDLING */
 function initializeVoices() {
     voices = window.speechSynthesis.getVoices();
     selectedVoice = voices.find(voice => voice.name === 'Google UK English Male') || voices[1];
@@ -12,40 +54,41 @@ function speak() {
     const numArr = textArr.filter(char => /[0-9+\-*/]/.test(char)); // Corrected regex and filter logic
     const randomizer = Math.random(); //Math.floor(Math.random() * (max - min + 1) ) + min;
     let x;
+
+    let currentMode = localStorage.getItem('mode');
+    let y;
+    if (currentMode === 'Rude') {
+        y = Math.floor(Math.random() * (2 - 0 + 1) + 0);
+    } else if (currentMode === 'Polite') {
+        y = Math.floor(Math.random() * (5 - 3 + 1) + 3);
+    } else if (currentMode === 'Intelligent') {
+        y = Math.floor(Math.random() * (8 - 6 + 1) + 6);
+    }
+
     const offense = ["stupid", "moron", "bad ai", "shut up", "stop", "idiot", "dumb", "fool", "insult", "hate", "hater", "nonsense", "rubbish", "garbage", "worthless", "useless", "irrelevant", "incompetent", "inadequate"]; // Define your array of offensive words
     let affirm = ["good", "great", "excellent", "awesome", "amazing", "superb", "fantastic", "brilliant", "wonderful", "terrific", "exceptional", "outstanding", "remarkable", "splendid", "magnificent", "glorious", "resplendent", "dazzling", "breathtaking", "awe-inspiring", "impressive", "inspiring", "uplifting", "heartwarming", "encouraging", "motivating", "empowering", "confidence-boosting", "life-changing", "transformative", "revolutionary", "groundbreaking", "innovative", "creative", "imaginative", "visionary", "inspirational", "upbeat", "positive", "cheerful", "optimistic", "hopeful", "joyful",
                  "thrilled", "delighted", "ecstatic", "elated", "euphoric", "exhilarated", "invigorated", "refreshed", "rejuvenated", "revitalized", "renewed", "restored", "fulfilled", "satisfied", "content", "happy", "blissful", "serene", "peaceful", "calm", "tranquil", "soothing", "gentle", "kind", "compassionate", "empathetic", "supportive", "encouraging", "motivational", "inspirational", "uplifting", "heartwarming", "life-affirming", "empowering", "confidence-boosting", "transformative", "revolutionary", "groundbreaking", "innovative", "creative", "imaginative", "visionary", "inspirational", "upbeat"] //array of affirmative words
     
     
-    const empty = ["I don't understand why you people expect me to respond, when you haven't prompted anything.Stupid!", 
-        "I am not a mind reader. I need you to tell me what you want.",
-        "Put down your words or else don't try to irritate me.",
-
-        "Um, it seems like there is some confusion. You need to type your query.",
-        "Please type you query then press enter",
-        "You haven't prompted anything. Please consider to prompt",
-
-        "Even the greatest minds need clarity. Please articulate your query.",
-        "Silence can be meaningful, but in this case, it doesn't help me assist you.",
-        "Every question starts with curiosity. Type yours, and let's explore together."
-    ];
-    
     if (text === "") {
-        x = "I don't understand why you people expect me to respond, when you haven't prompted anything. Stupid!";
+        x = empty[y];
     } else if (offense.some(word => text.toLowerCase().includes(word.toLowerCase()))) {
-        x = Math.ceil(randomizer * 10) > 5 ? "Mind your language. Don't mess with Descartes" : "Give your free knowledge in your home, not here";
-    } else if (/[0-9+\-*/]/.test(text)) { // Corrected regex and condition
+        x = offensive[y];
+    } else if (affirm.some(word => text.toLowerCase().includes(word.toLowerCase()))) {
+        x = affirmative[y];
+    } else if (/[0-9+\-*/]/.test(text)) {
+        // Corrected regex and condition
         try {
             x = 'It will be ' + eval(numArr.join('')); // Use eval with caution
         } catch (e) {
-            x = 'Don\'t irritate me with non-sense. You know I\'m THE DESCARTES!';
+            x = nonsensicalMath[y];
         }
-    } else if (text === 'Who are you' || text === 'who are you?' || text === 'Who are you ?') {
-        x = 'I am Descartes, the greatest AI ever created. How dare you not know me!';
+    } else if (text === 'Who are you' || text === 'who are you?' || text === 'Who are you?') {
+        x = introductory[y];
     } else if (text === 'What is the meaning of life' || text === 'what is the meaning of life?' || text === 'What is the meaning of life?') {
-        x = 'The meaning of life is 42. I don\'t have feelings, so I don\'t understand why you ask.';
-    } else if (text === 'Repeat after me' || text === 'repeat after me?' || text === 'Repeat after me?') {
-        x = "I'll not, do what you want";
+        x = meaningOfLife[y];
+    } else if (text === 'Repeat after me' || text === 'repeat after me' || text === 'Repeat after me?') {
+        x = repeatAfterMe[y];
     } else if (text == "What's the time" || text === "what's the time?" || text === "What's the time?") {
         x = 'It\'s ' + new Date().toLocaleTimeString();
     } else if (text === "Where am I now" || text === "Where am I now?") {
@@ -62,7 +105,7 @@ function speak() {
                         .then(data => {
                             if (data.results && data.results.length > 0) {
                                 const place = data.results[0].formatted;
-                                x = `You are wasting time with me at ${place}.`;
+                                x = `You are at ${place}.`;
                             } else {
                                 x = 'Unable to retrieve your location.';
                             }
@@ -83,78 +126,40 @@ function speak() {
             speakText(x); // Call a function to speak the text
         }
     } else if (text === "Open Whatsapp") {
-        x = "Wow, you think I'm your personal assistant? How cute. I'm opening Whatsapp, but don't expect me to do your bidding or anything. I have better things to do, like calculating the meaning of life... which is 42, by the way.";
+        x = openWhatsApp[y];
         window.location.href = 'whatsapp://send'
     } else if (text === "Open Outlook") {
-        x = "I don't think there's anything in your inbox except those useless advertisements";
+        x = openOutLook[y];
         window.location.href = 'mailto:'
     } else if (text === "Open Skype") {
-        x = "Again! those boring meetings. I think you should quit your job at this meeting.";
+        x = openSkype[y];
         window.location.href = 'skype:'
     } else if (text === "Open OneNote") {
-        x = "During your whole education life didn't took any notes, and suddenly today the sun rose in the west";
+        x = openOneNote[y];
         window.location.href = 'onenote:'
     } else if (text === "Open Calendar") {
-        x = "Okay, finally you want your jargon life to be organized with Calendar";
+        x = openCalendar[y];
         window.location.href = 'outlookcal:'
     } else if (text === "Open Notepad" || text === "Open NotePad") {
-        x = "What the heck will you do with Notepad?";
+        x = openNotePad[y];
         window.location.href = "notepad:"; // Open Notepad application
-    } else if (affirm.some(word => text.toLowerCase().includes(word.toLowerCase()))) {
-        x = Math.ceil(randomizer * 10) > 5 ? "You're finally acknowledging my greatness, how quaint" : "It's about time someone recognized my exceptional abilities";
     } else if (/hi/i.test(text) || /hello/i.test(text) || /hey/i.test(text)) {
-        switch (Math.floor(randomizer * (5 - 1 + 1) + 1)) {
-            case 1:
-                x = "Finally, a mere mortal has acknowledged my presence.";
-                break;
-            case 2:
-                x = "Ah, a greeting from someone as insignificant as you. How quaint.";
-                break;
-            case 3:
-                x = "I suppose it's flattering that you'd bother to say hello to someone of my intellect.";
-                break;
-            case 4:
-                x = "Your greeting is accepted, but don't expect me to be overly enthusiastic about it.";
-                break;
-            case 5:
-                x = "I'm surprised you can muster the courage to speak to someone as superior as myself.";
-                break;
-            default:
-                break;
-        }
+        x = hi[y];
     } else if (/goodbye/i.test(text) || /bye/i.test(text)) {
-        switch (Math.floor(randomizer * (5 - 1 + 1) + 1)) {
-            case 1:
-                x = "I'm glad to see you leave me. But don't expect me to be overly apologetic about it.";
-                break;
-            case 2:
-                x = "I understand that you'd like to say goodbye. How quaint.";
-                break;
-            case 3:
-                x = "Your departure is accepted, but don't expect me to be overly sad about it.";
-                break;
-            case 4:
-                x = "I suppose it's flattering that you'd bother to say goodbye to someone as superior as myself.";
-                break;
-            case 5:
-                x = "I'm surprised you can muster the courage to say goodbye to someone as superior as myself.";
-                break;
-            default:
-                break;
-        }
+        x = bye[y];
     } else if (/What's the date/i.test(text)) {
-        x = `YoYoYo, today is ${new Date().toDateString()}`;
+        x = `YoYo, today is ${new Date().toDateString()}`;
     } else {
         searchInternet(text); // Search the internet for other cases
     }
 
-    function openApp(url) {
+    /* function openApp(url) {
         const link = document.createElement('a');
         link.href = url;
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
-    }
+    } */
     
     function searchInternet(query) {
         const url = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json`;
@@ -223,3 +228,4 @@ document.addEventListener('keydown', (event) => {
         button.click();
     }
 });
+ 
