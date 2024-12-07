@@ -1,4 +1,5 @@
 "use strict";
+
 const sidepanel = document.getElementById("sidepanel");
 const openBtn = document.getElementsByClassName("openBtn");
 const hamburgerImg = document.getElementById("hamburger-img");
@@ -35,10 +36,12 @@ function options(optName) {
             modal.innerHTML = `<button id="mod-close" onclick="closeMod()">&times;</button>
                               <div class="center">Personalities</div> <br/>
                               Descartes has 3 personalities: <br/>
-                              <label><input type="radio" name="persona" value="Rude"> Rude</label><br/>
-                              <label><input type="radio" name="persona" value="Polite"> Polite</label><br/>
-                              <label><input type="radio" name="persona" value="Intelligent"> Intelligent</label></br>
-                              <button id=\"personaConfirm\" class=\"mo-cf\">Confirm</button>`;
+                              <label><sub><input type="radio" name="persona" value="Rude"></sub> Rude</label><br/>
+                              <label><sub><input type="radio" name="persona" value="Polite"></sub> Polite</label><br/>
+                              <label><sub><input type="radio" name="persona" value="Intelligent"></sub> Intelligent</label></br>
+                              <button id="personaConfirm" class="mo-cf">Confirm</button>`;
+            document.getElementById('personaConfirm').addEventListener('click', updateMode);
+            setCheckedMode(); // Set the checked radio button based on localStorage
             break;
         case 'voice':
             modal.innerHTML = `<button id="mod-close" onclick="closeMod()">&times;</button>
@@ -68,4 +71,34 @@ function closeMod() {
     modal.style.visibility = "hidden";
     modal.style.zIndex = "-1";
     modal.style.display = "none";
+}
+
+function updateMode() {
+    const modes = document.getElementsByName('persona');
+    let currentMode = 'Rude';
+    for (const modeElement of modes) {
+        if (modeElement.checked) {
+            currentMode = modeElement.value;
+            break;
+        }
+    }
+    if (currentMode) {
+        console.log("Selected Mode:", currentMode); // Logs the selected value
+    } else {
+        console.log("No mode selected.");
+    }
+    localStorage.setItem('mode', currentMode); // remembers the current value
+}
+
+function setCheckedMode() {
+    const currentMode = localStorage.getItem('mode'); // Retrieve the mode from localStorage
+    if (currentMode) {
+        const modes = document.getElementsByName('persona');
+        for (const modeElement of modes) {
+            if (modeElement.value === currentMode) {
+                modeElement.checked = true;
+                break;
+            }
+        }
+    }
 }
