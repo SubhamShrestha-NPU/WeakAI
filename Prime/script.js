@@ -228,4 +228,3 @@ document.addEventListener('keydown', (event) => {
         button.click();
     }
 });
- 
