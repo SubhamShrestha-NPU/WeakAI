@@ -48,8 +48,16 @@ function options(optName) {
                               <div class="center">Voice</div>`;
             break;
         case 'theme':
-            modal.innerHTML = `<button id="mod-close" onclick="closeMod()">&times;</button>
-                              <div class="center">Themes</div>`;
+            modal.innerHTML =`<button id="mod-close" onclick="closeMod()">&times;</button>
+                              <div class="center">Voice</div>
+
+                              <button id="theme-switch" onclick="toggleTheme()" >
+                                <img src="../Assets/DarkMode.svg" alt="Dark Mode" id="dark-mode">
+                                <img src="../Assets/LightMode.svg" alt="Light Mode" id="light-mode">
+                              </button>`;
+            modal.style.display = "flex";
+            modal.style.justifyContent = "center";
+            modal.style.alignItems = "center";
             break;
         case 'tutorial':
             modal.innerHTML = `<button id="mod-close" onclick="closeMod()">&times;</button>
@@ -72,7 +80,7 @@ function closeMod() {
     modal.style.zIndex = "-1";
     modal.style.display = "none";
 }
-
+ /* MODE HANDLER */
 function updateMode() {
     const modes = document.getElementsByName('persona');
     let currentMode = 'Rude';
@@ -101,4 +109,25 @@ function setCheckedMode() {
             }
         }
     }
+}
+
+/* THEMES HANDLER */
+let lightMode = localStorage.getItem('lightMode');
+const themeSwitch = document.getElementById('theme-switch');
+
+function enableLightMode() { 
+    document.body.classList.add('lightMode');
+    localStorage.setItem('lightMode', 'active');
+}
+function disableLightMode() { 
+    document.body.classList.remove('lightMode');
+    localStorage.setItem('lightMode', null);
+}
+
+if (lightMode === 'active') {enableLightMode();}
+
+function toggleTheme() {
+    lightMode = localStorage.getItem('lightMode');
+    lightMode !== "active" ? enableLightMode() : disableLightMode();
+    console.log(localStorage.getItem('lightMode'));
 }
