@@ -6,29 +6,30 @@ const hamburgerImg = document.getElementById("hamburger-img");
 const command = document.getElementById("command");
 const btn = document.getElementById("btn");
 const modal = document.getElementById('modal');
+const header = document.querySelector('header');
 
 function openNav() {
     sidepanel.style.visibility = "visible";
     sidepanel.style.transform = "translateX(0)";
     sidepanel.style.width = "250px";
-    for (let i = 0; i < openBtn.length; i++) {
-        openBtn[i].style.visibility = "hidden";
-    }
     hamburgerImg.style.visibility = "hidden";
-    command.style.zIndex = "-1";
-    btn.style.zIndex = "-1";
+
+    // Move only the side panel above everything else
+    sidepanel.style.zIndex = "10";
+    header.style.zIndex = "200";
 }
 
 function closeNav() {
     sidepanel.style.visibility = "hidden";
     sidepanel.style.width = "0";
-    for (let i = 0; i < openBtn.length; i++) {
-        openBtn[i].style.visibility = "visible";
-    }
     hamburgerImg.style.visibility = "visible";
+
+    // Ensure cmd and btn are always on top when sidepanel is hidden
     command.style.zIndex = "2";
     btn.style.zIndex = "2";
+    header.style.zIndex = "2";
 }
+
 
 function options(optName) {
     switch (optName) {
@@ -36,16 +37,20 @@ function options(optName) {
             modal.innerHTML = `<button id="mod-close" onclick="closeMod()">&times;</button>
                               <div class="center">Personalities</div> <br/>
                               Descartes has 3 personalities: <br/>
-                              <label><sub><input type="radio" name="persona" value="Rude"></sub> Rude</label><br/>
-                              <label><sub><input type="radio" name="persona" value="Polite"></sub> Polite</label><br/>
-                              <label><sub><input type="radio" name="persona" value="Intelligent"></sub> Intelligent</label></br>
-                              <button id="personaConfirm" class="mo-cf">Confirm</button>`;
-            document.getElementById('personaConfirm').addEventListener('click', updateMode);
+                              <label><input type="radio" name="persona" value="Rude"> Rude</label><br/>
+                              <label><input type="radio" name="persona" value="Polite"> Polite</label><br/>
+                              <label><input type="radio" name="persona" value="Intelligent"> Intelligent</label></br>
+                              <button id="personaConfirm" class="mo-cf" onclick="updateMode">Confirm</button>`;
             setCheckedMode(); // Set the checked radio button based on localStorage
             break;
         case 'voice':
             modal.innerHTML = `<button id="mod-close" onclick="closeMod()">&times;</button>
-                              <div class="center">Voice</div>`;
+                              <div class="center">Voice</div>
+                              <input type="radio" name="voice" value="1" onclick="setVoice()" /> <label for="voice">Voice 1</label><br/>
+                              <input type="radio" name="voice" value="2" onclick="setVoice()" /> <label for="voice">Voice 2</label><br/>
+                              <input type="radio" name="voice" value="3" onclick="setVoice()" /> <label for="voice">Voice 3</label><br/>
+                              <button id="voiceConfirm" class="mo-cf" onclick="updateVoice()">Confirm</button>`;
+            setCheckedVoice(); // Set the checked radio button based on localStorage
             break;
         case 'theme':
             modal.innerHTML =`<button id="mod-close" onclick="closeMod()">&times;</button>
@@ -90,11 +95,6 @@ function updateMode() {
             break;
         }
     }
-    if (currentMode) {
-        console.log("Selected Mode:", currentMode); // Logs the selected value
-    } else {
-        console.log("No mode selected.");
-    }
     localStorage.setItem('mode', currentMode); // remembers the current value
 }
 
@@ -110,6 +110,35 @@ function setCheckedMode() {
         }
     }
 }
+
+/* VOICE HANDLER */
+function updateVoice() {
+    const voices = document.getElementsByName('voice');
+    let currentVoice = '1';
+    for (const voiceElement of voices) {
+        if (voiceElement.checked) {
+            currentVoice = voiceElement.value;
+            break;
+        }
+    }
+    localStorage.setItem('voice', currentVoice); // remembers the current value
+    console.log(localStorage.getItem('voice'));
+    location.reload();
+}
+
+function setCheckedVoice() {
+    const currentVoice = localStorage.getItem('voice'); //retrieve the current voice
+    if (currentVoice) {
+        const voices = document.getElementsByName('voice');
+        for (const voiceElement of voices) {
+            if (voiceElement.value === currentVoice) {
+                voiceElement.checked = true;
+                break;
+            }
+        }
+    }
+}
+
 
 /* THEMES HANDLER */
 let lightMode = localStorage.getItem('lightMode');

@@ -41,11 +41,12 @@ fetch('response.json')
     
 let voices = [];
 let selectedVoice;
+let z = Number(localStorage.getItem('voice'));
 
 /* LIVE HANDLING */
 function initializeVoices() {
     voices = window.speechSynthesis.getVoices();
-    selectedVoice = voices.find(voice => voice.name === 'Google UK English Male') || voices[1];
+    selectedVoice = voices.find(voice => voice.name === 'Google UK English Male') || voices[z];
 }
 
 function speak() {
@@ -54,9 +55,10 @@ function speak() {
     const numArr = textArr.filter(char => /[0-9+\-*/]/.test(char)); // Corrected regex and filter logic
     const randomizer = Math.random(); //Math.floor(Math.random() * (max - min + 1) ) + min;
     let x;
+    let y;
 
     let currentMode = localStorage.getItem('mode');
-    let y;
+    
     if (currentMode === 'Rude') {
         y = Math.floor(Math.random() * (2 - 0 + 1) + 0);
     } else if (currentMode === 'Polite') {
@@ -188,8 +190,8 @@ function speak() {
     const utterance = new SpeechSynthesisUtterance(x);
     utterance.voice = selectedVoice;
     utterance.lang = 'en-US'; // Set the language
-    utterance.pitch = 1; // Set the pitch
-    utterance.rate = 0.8; // Set the rate of speech
+    utterance.pitch = 2; // Set the pitch
+    utterance.rate = 1.5; // Set the rate of speech
     utterance.volume = 1; // Set the volume to maximum
 
     window.speechSynthesis.speak(utterance);
