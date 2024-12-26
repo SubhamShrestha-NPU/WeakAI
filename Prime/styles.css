@@ -57,7 +57,7 @@
 header {
     width: 100vw;
     height: 100vh;
-    z-index: 200;
+    z-index: 2;
 }
 .center {
     align-self: center;
@@ -95,7 +95,7 @@ body {
     align-items: center; /* Center content vertically */
     padding: 10px; /* Padding for body content */
     position: absolute; 
-    z-index: -100;
+    z-index: 100;
 }
 #theme-switch {
     background: var(--btn-bg);
@@ -291,7 +291,7 @@ button {
     border: 0; /* Remove border from the input field */
     color: var(--base-text); /* Set text color to white for the input field */
     position: relative; /* Relative positioning for the input field */
-    z-index: 2;
+    z-index: 20;
     border-radius: 20px;
     padding: 5px; /* Add padding to the input field */
     font-size: 16px;
@@ -321,12 +321,8 @@ nav {
     height: 100vh;
     border-radius: 0 10px 10px 0;
     visibility: hidden;
-    /* translate: -50vw 0; */
     z-index: 5;
     transition: 200ms linear;
-    /* overflow-x: hidden;
-    overflow-y: hidden; */
-    /* overflow: hidden; */
 }
 #sidepanel .options {
     background: var(--sidePnl-opt-bg);
@@ -335,10 +331,8 @@ nav {
     margin: 10px 0;
     font-family: 'Courier New', Courier, monospace;
     width: 250px;
-    min-height: max-content;
-    /* Use max-content for the minimum height */
-    padding: 10px;
-    /* Add padding to increase the height */
+    min-height: max-content; /* Use max-content for the minimum height */
+    padding: 10px; /* Add padding to increase the height */
     line-height: 2em;
 }
 #sidepanel .options:hover {
@@ -451,7 +445,7 @@ input[type="radio"] {
     background-color: var(--radio-bg);
     position: relative;
     clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
-    margin: 10px;    
+    margin: 10px;
 }
 
 input[type="radio"]:checked {
@@ -462,4 +456,3 @@ input[type="radio"]:checked {
 input[type="radio"]:not(:checked):hover {
     background-color: var(--radio-bg-hvr);
 }
-
