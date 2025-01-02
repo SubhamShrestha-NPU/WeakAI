@@ -1,4 +1,5 @@
-/** variables section */
+@import url(root.css);
+/** variables and frameworking section */
 @property --deg {
     syntax: "<angle>";
     initial-value: 0deg;
@@ -9,51 +10,7 @@
     initial-value: 0px;
     inherits: false;
 } /* Initialize radius */
-:root {
-    /* color palette */
-    --body-bg: linear-gradient(var(--deg), #282727, #4c4b4b);
-    --logo-bg: conic-gradient(#000000, #4c4b4b00, #000000, #4c4b4b00, #000000, #4c4b4b00, #000000, #4c4b4b00, #000000);
-    --base-text: #ffffff;
-    --btn-bg: #00000000;
-    --btn-color: #ffffff89;
-    --cmd-bg: #00000027;
-    --sidePnl-bg: #18171781;
-    --sidePnl-opt-bg: #8d848400;
-    --sidePnl-opt-bg-hvr: #00000033;
-    --closeBtn-color: #dbdbdb;
-    --mod-bg: #0000003f;
-    --mo-cf-bg: #dfdfdf;
-    --mo-cf-bg-hvr: #dfdfdfaa;
-    --radio-bg: #000000;
-    --radio-bg-checked: #947332;
-    --radio-bg-hvr: #313131;
-    --svg-icn: #CCCCCC;
 
-    /* numerics */
-    --modal-width: 80vw;
-    --modal-height: 50vh;
-    --theme-container-width: 20px;
-}
-
-.lightMode {
-    --body-bg: linear-gradient(var(--deg), #3e3838, #c7b2b2);
-    --logo-bg: conic-gradient(#0f0f0f, #5e5656, #0f0f0f, #5e5656, #0f0f0f, #5e5656, #0f0f0f, #5e5656, #0f0f0f);
-    --base-text: #000000;
-    --btn-bg: #00000000;
-    --btn-color: #00000089;
-    --cmd-bg: #8e6a6a;
-    --sidePnl-bg: #98898981;
-    --sidePnl-opt-bg: #ffffff00;
-    --sidePnl-opt-bg-hvr: #e0e0e033;
-    --closeBtn-color: #1f1f1f;
-    --mod-bg: #6659593f;
-    --mo-cf-bg: #b48585;
-    --mo-cf-bg-hvr: #fcb1b1aa;
-    --radio-bg: #ffe5e5;
-    --radio-bg-checked: #ff6b6b;
-    --radio-bg-hvr: #e88888;
-    --svg-icn: #150101;
-}
 header {
     width: 100vw;
     height: 100vh;
@@ -70,6 +27,14 @@ header {
 .container-vCenter {
     display: flex;
     align-items: center;
+}
+.fd-row {
+    display: flex;
+    flex-direction: row;
+}
+.fd-col {
+    display: flex;
+    flex-direction: column;
 }
 /** customization section */
 body {
@@ -455,4 +420,43 @@ input[type="radio"]:checked {
 
 input[type="radio"]:not(:checked):hover {
     background-color: var(--radio-bg-hvr);
+}
+
+.games {
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 70vw;
+    height: 40vh;
+    margin: 4px 0 4px 0; /* gives 4px margin at the bottom and top each */
+    border: 0; /* removes border */
+    border-radius: 2px; /* adds rounded border */
+    overflow: hidden; /* hides overflow content */
+    padding: 0;
+}
+
+#g1 {
+    background: url(../Assets/LudoBanner.svg);
+}
+#g2 {
+    background: url(../Assets/TicTacToeBanner.svg);
+}
+#g3 {
+    background: url(../Assets/TossACoinBanner.svg);
+}
+ #g1,
+#g2,
+#g3,
+#g4,
+#g5,
+#g6,
+#g7,
+#g8,
+#g9,
+#g10 {
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
 }

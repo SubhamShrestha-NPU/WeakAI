@@ -54,7 +54,7 @@ function options(optName) {
             break;
         case 'theme':
             modal.innerHTML =`<button id="mod-close" onclick="closeMod()">&times;</button>
-                              <div class="center">Voice</div>
+                              <div class="center">Themes</div>
 
                               <button id="theme-switch" onclick="toggleTheme()" >
                                 <img src="../Assets/DarkMode.svg" alt="Dark Mode" id="dark-mode">
@@ -64,14 +64,26 @@ function options(optName) {
             modal.style.justifyContent = "center";
             modal.style.alignItems = "center";
             break;
-        case 'tutorial':
-            modal.innerHTML = `<button id="mod-close" onclick="closeMod()">&times;</button>
-                              <div class="center">How To</div>`;
-            break;
-        case 'games':
-            modal.innerHTML = `<button id="mod-close" onclick="closeMod()">&times;</button>
-                              <div class="center">Games</div>`;
-            break;
+            case 'games':
+                modal.innerHTML = `<button id="mod-close" onclick="closeMod()">&times;</button>
+                <div class="center">Games</div> <br/>
+                <div class="container-vCenter fd-col">
+                    <button class="games" id="g1" href="#"></button>
+                    <button class="games" id="g2" href="#"></button>
+                    <button class="games" id="g3" href="#"></button>
+                    <button class="games" id="g4" href="#"></button>
+                    <button class="games" id="g5" href="#"></button>
+                    <button class="games" id="g6" href="#"></button>
+                    <button class="games" id="g7" href="#"></button>
+                    <button class="games" id="g8" href="#"></button>
+                    <button class="games" id="g9" href="#"></button>
+                    <button class="games" id="g10" href="#"></button>
+                </div>`;
+                break;
+            case 'tutorial':
+                modal.innerHTML = `<button id="mod-close" onclick="closeMod()">&times;</button>
+                                    <div class="center">How To</div>`;
+                break;
         default:
             modal.innerHTML = ``;
     }
