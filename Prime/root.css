@@ -1,0 +1,72 @@
+/* 
+notes:
+-- /*  : means general comments
+-- /** : means the variable deals with svg elements
+-- /*! : means section
+-- /*# : means subsections
+-- /*? : means
+-- /*& : means
+*/
+
+:root {
+    /* color palette */
+    --body-bg: linear-gradient(var(--deg), #282727, #4c4b4b); /* body background */
+    --logo-bg: conic-gradient(#000000, #4c4b4b00, #000000, #4c4b4b00, #000000, #4c4b4b00, #000000, #4c4b4b00, #000000); /* logo bg */
+    --base-text: #ffffff; /* common text color */
+    --btn-bg: #00000000; /* transparent button background */
+    --btn-color: #ffffff89; /* button text color */
+    --cmd-bg: #00000027; /* command/text box border */
+    --sidePnl-bg: #18171781; /* side panel bg color */
+    --sidePnl-opt-bg: #8d848400; /* side panel option bg color */
+    --sidePnl-opt-bg-hvr: #00000033; /* side panel option bg color on hover */
+    --closeBtn-color: #dbdbdb; /* close button color */
+    --mod-bg: #0000003f; /* modal bg color */
+    --mo-cf-bg: #dfdfdf; /* modal confirm button bg color */
+    --mo-cf-bg-hvr: #dfdfdfaa; /* modal confirm button bg color on hover */
+    --radio-bg: #000000; /* radio bg color */
+    --radio-bg-checked: #947332; /* radio bg color when checked */
+    --radio-bg-hvr: #313131; /* radio bg color on hover */
+    --svg-icn: #CCCCCC; /**svg hamburger icon color */
+    /* ! Ludo */
+        /*# Ludo Banner */
+        /* --btm-coin: #3840B8;  *//**bottom right coin color */
+        /* --btm-grid-bg: #5250D8; */ /**bottom grid background color */
+        /* --btm_gird-brd: #6361E2;  *//**bottom grid border color */
+        /* --top-coin: #9C1F1F;  *//**top right coin color */
+        /* --top-grid-bg: #D64141; *//**top grid background color */
+        /* --top-grid-brd: #E74D4D; *//**top grid border color */
+
+    /* numerics */
+    --modal-width: 80vw;
+    --modal-height: 50vh;
+    --theme-container-width: 20px;
+}
+
+.lightMode {
+    --body-bg: linear-gradient(var(--deg), #3e3838, #c7b2b2);
+    --logo-bg: conic-gradient(#0f0f0f, #5e5656, #0f0f0f, #5e5656, #0f0f0f, #5e5656, #0f0f0f, #5e5656, #0f0f0f);
+    --base-text: #000000;
+    --btn-bg: #00000000;
+    --btn-color: #00000089;
+    --cmd-bg: #8e6a6a;
+    --sidePnl-bg: #98898981;
+    --sidePnl-opt-bg: #ffffff00;
+    --sidePnl-opt-bg-hvr: #e0e0e033;
+    --closeBtn-color: #1f1f1f;
+    --mod-bg: #6659593f;
+    --mo-cf-bg: #b48585;
+    --mo-cf-bg-hvr: #fcb1b1aa;
+    --radio-bg: #ffe5e5;
+    --radio-bg-checked: #ff6b6b;
+    --radio-bg-hvr: #e88888;
+    --svg-icn: #150101;
+    /*! Ludo */
+        /*# Ludo Banner */
+        --btm-coin: #4C9F50; /* bottom right coin color (green) */
+        --btm-grid-bg: #8CCF8C; /* bottom grid background color (light green) */
+        --btm-grid-brd: #A1D6A1; /* bottom grid border color (soft green) */
+
+        --top-coin: #D8C93E; /* top right coin color (yellow) */
+        --top-grid-bg: #F7E55E; /* top grid background color (light yellow) */
+        --top-grid-brd: #F8D24F; /* top grid border color (soft yellow) */
+}
