@@ -1,16 +1,5 @@
 @import url(root.css);
 /** variables and frameworking section */
-@property --deg {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-} /* Initialize background rotation angle */
-@property --radius {
-    syntax: "<length>";
-    initial-value: 0px;
-    inherits: false;
-} /* Initialize radius */
-
 header {
     width: 100vw;
     height: 100vh;
