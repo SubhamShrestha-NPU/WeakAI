@@ -8,6 +8,21 @@ notes:
 -- /*& : means
 */
 
+@property --deg {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+/* Initialize background rotation angle */
+@property --radius {
+    syntax: "<length>";
+    initial-value: 0px;
+    inherits: false;
+}
+
+/* Initialize radius */
+
 :root {
     /* color palette */
     --body-bg: linear-gradient(var(--deg), #282727, #4c4b4b); /* body background */
