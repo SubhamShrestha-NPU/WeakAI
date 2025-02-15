@@ -74,25 +74,34 @@ function speak() {
     
     if (text === "") {
         x = empty[y];
+        print(text, x);
     } else if (offense.some(word => text.toLowerCase().includes(word.toLowerCase()))) {
         x = offensive[y];
+        print(text, x);
     } else if (affirm.some(word => text.toLowerCase().includes(word.toLowerCase()))) {
         x = affirmative[y];
+        print(text, x);
     } else if (/[0-9+\-*/]/.test(text)) {
         // Corrected regex and condition
         try {
             x = 'It will be ' + eval(numArr.join('')); // Use eval with caution
+            print(text, x);
         } catch (e) {
             x = nonsensicalMath[y];
+            print(text, x);
         }
     } else if (text === 'Who are you' || text === 'who are you?' || text === 'Who are you?') {
         x = introductory[y];
+        print(text, x);
     } else if (text === 'What is the meaning of life' || text === 'what is the meaning of life?' || text === 'What is the meaning of life?') {
         x = meaningOfLife[y];
+        print(text, x);
     } else if (text === 'Repeat after me' || text === 'repeat after me' || text === 'Repeat after me?') {
         x = repeatAfterMe[y];
+        print(text, x);
     } else if (text == "What's the time" || text === "what's the time?" || text === "What's the time?") {
         x = 'It\'s ' + new Date().toLocaleTimeString();
+        print(text, x);
     } else if (text === "Where am I now" || text === "Where am I now?") {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
@@ -108,49 +117,63 @@ function speak() {
                             if (data.results && data.results.length > 0) {
                                 const place = data.results[0].formatted;
                                 x = `You are at ${place}.`;
+                                print(text, x);
                             } else {
                                 x = 'Unable to retrieve your location.';
+                                print(text, x);
                             }
                             speakText(x); // Call a function to speak the text
                         })
                         .catch(error => {
                             x = 'Unable to retrieve your location.';
                             speakText(x); // Call a function to speak the text
+                            print(text, x);
                         });
                 },
                 function (error) {
                     x = 'Sorry, I am unable to retrieve your location.';
                     speakText(x); // Call a function to speak the text
+                    print(text, x);
                 }
             );
         } else {
             x = 'Geolocation is not supported by this browser.';
             speakText(x); // Call a function to speak the text
+            print(text, x);
         }
     } else if (text === "Open Whatsapp") {
         x = openWhatsApp[y];
-        window.location.href = 'whatsapp://send'
+        window.location.href = 'whatsapp://send';
+        print(text, x);
     } else if (text === "Open Outlook") {
         x = openOutLook[y];
-        window.location.href = 'mailto:'
+        window.location.href = 'mailto:';
+        print(text, x);
     } else if (text === "Open Skype") {
         x = openSkype[y];
-        window.location.href = 'skype:'
+        window.location.href = 'skype:';
+        print(text, x);
     } else if (text === "Open OneNote") {
         x = openOneNote[y];
-        window.location.href = 'onenote:'
+        window.location.href = 'onenote:';
+        print(text, x);
     } else if (text === "Open Calendar") {
         x = openCalendar[y];
-        window.location.href = 'outlookcal:'
+        window.location.href = 'outlookcal:';
+        print(text, x);
     } else if (text === "Open Notepad" || text === "Open NotePad") {
         x = openNotePad[y];
         window.location.href = "notepad:"; // Open Notepad application
+        print(text, x);
     } else if (/hi/i.test(text) || /hello/i.test(text) || /hey/i.test(text)) {
         x = hi[y];
+        print(text, x);
     } else if (/goodbye/i.test(text) || /bye/i.test(text)) {
         x = bye[y];
+        print(text, x);
     } else if (/What's the date/i.test(text)) {
         x = `YoYo, today is ${new Date().toDateString()}`;
+        print(text, x);
     } else {
         searchInternet(text); // Search the internet for other cases
     }
@@ -171,12 +194,15 @@ function speak() {
             .then(data => {
                 if (data.AbstractText) {
                     const resultText = `${data.Heading}. ${data.AbstractText}. You can read more at ${data.AbstractURL}`;
+                    print(text, resultText);
                     speakText(resultText, 'en'); // Utter the search result
                 } else if (data.RelatedTopics && data.RelatedTopics.length > 0) {
                     const firstResult = data.RelatedTopics[0];
                     const resultText = `I found this: ${firstResult.Text}. You can read more at ${firstResult.FirstURL}`;
+                    print(text, resultText);
                     speakText(resultText, 'en'); // Utter the search result
                 } else {
+                    print(text, 'I could not find any results.');
                     speakText('I could not find any results.', 'en'); // Utter no results found
                 }
             })
@@ -185,16 +211,12 @@ function speak() {
                 speakText('There was an error fetching the search results.', 'en'); // Utter error message
             });
     }
+    speakText(x);
+}
 
-
-    const utterance = new SpeechSynthesisUtterance(x);
-    utterance.voice = selectedVoice;
-    utterance.lang = 'en-US'; // Set the language
-    utterance.pitch = 2; // Set the pitch
-    utterance.rate = 1.5; // Set the rate of speech
-    utterance.volume = 1; // Set the volume to maximum
-
-    window.speechSynthesis.speak(utterance);
+function print(query, response) {
+    console.log(`You: ${query}`);
+    console.log(`Descartes: ${response}`);
 }
 
 // Ensure voices are loaded before calling speak
@@ -202,15 +224,13 @@ window.speechSynthesis.onvoiceschanged = function () {
     initializeVoices();
 };
 
-// Initialize voices on page load
-initializeVoices();
 
 function speakText(text) {
     const utterance = new SpeechSynthesisUtterance(text);
     utterance.voice = selectedVoice;
     utterance.lang = 'en-US'; // Set the language
-    utterance.pitch = 0.5; // Set the pitch
-    utterance.rate = 1.2; // Set the rate of speech
+    utterance.pitch = 1.5; // Set the pitch
+    utterance.rate = 1.5; // Set the rate of speech
     utterance.volume = 1; // Set the volume to maximum
 
     window.speechSynthesis.speak(utterance);
