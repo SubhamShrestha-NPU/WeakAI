@@ -84,12 +84,6 @@ body {
     height: max-content;
 }
 
-@keyframes rotate {
-    to {
-        --deg: 360deg; /* rotates the background 360 degrees */
-    }
-}
-
 #logo {
     width: var(--radius); /* sets the logo size */
     height: var(--radius); 

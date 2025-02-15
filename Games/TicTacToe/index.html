@@ -4,29 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
+    <!-- <link rel="stylesheet" href="..\Prime\root.css"> -->
     <title>Tic Tac Toe</title>
 </head>
-<body>
+<body class="light">
     <nav></nav>
 
     <main>
         <div id="grid" class="grid">
+            <h2>Tic-Tac-Toe</h2><br/>
             <div class="row" id="r1">
-                <div class="cell" id="1">1</div>
-                <div class="cell" id="2">2</div>
-                <div class="cell" id="3">3</div>
+                <div class="cell oddCell" id="cl1" onclick="renderMark(1)">1</div>
+                <div class="cell evenCell" id="cl2" onclick="renderMark(2)">2</div>
+                <div class="cell oddCell" id="cl3" onclick="renderMark(3)">3</div>
             </div>
             <div class="row" id="r2">
-                <div class="cell" id="4">4</div>
-                <div class="cell" id="5">5</div>
-                <div class="cell" id="6">6</div>
+                <div class="cell evenCell" id="cl4" onclick="renderMark(4)">4</div>
+                <div class="cell oddCell" id="cl5" onclick="renderMark(5)">5</div>
+                <div class="cell evenCell" id="cl6" onclick="renderMark(6)">6</div>
             </div>
             <div class="row" id="r3">
-                <div class="cell" id="7">7</div>
-                <div class="cell" id="8">8</div>
-                <div class="cell" id="9">9</div>
+                <div class="cell oddCell" id="cl7" onclick="renderMark(7)">7</div>
+                <div class="cell evenCell" id="cl8" onclick="renderMark(8)">8</div>
+                <div class="cell oddCell" id="cl9" onclick="renderMark(9)">9</div>
             </div>
-        </div>
+            <div id="statusSection">
+                <div id="winner" class="statistics"></div>
+                <div id="Scoreboard" class="statistics">Score</div>
+            </div>
+        </div> <br/><br/>
     </main>
 
     <script src="script.js"></script>

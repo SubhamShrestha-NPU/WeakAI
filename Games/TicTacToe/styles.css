@@ -1,4 +1,11 @@
 @import url(../../Prime/root.css);
+:root {
+    --evenCellBG: #908f8f;
+    --oddCellBG: #878787;
+    --TAEgridBrdCol: #00000043;
+    --TAEgridBrdWidth: 1px;
+    --TAEcellSide: 15vh;
+}
 
 * {
     padding: 0;
@@ -11,6 +18,7 @@ body {
     background-size: 100% 100%;
     background-attachment: fixed;
     overflow: hidden;
+    animation: rotate 10s infinite linear;
 }
 
 main {
@@ -23,24 +31,155 @@ main {
 body, main {
     width: 100vw;
     height: 100vh;
+    display: flex;
+    /* justify-content: center;
+    align-items: center; */
 }
-
+h2 {
+    color: var(--base-text);
+    /* line-height: ; */
+    margin-top: -100px;
+    margin-bottom: 100px;
+}
 .grid {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     margin-top: 20vh;
-    border: 5px solid red;
+    margin-left: calc(100vh - (var(--TAEgridBrdWidth) * 3 + var(--TAEcellSide) * 1.5));
+    margin-right: calc(100vh - (var(--TAEgridBrdWidth) * 3 + var(--TAEcellSide) * 1.5));
+    /* border: 5px solid red; */
     border-radius: 10px;
+    border-collapse: collapse;
+}
+#statusSection {
+    margin-top: 2vh;
+    /* margin-left: -100vh; */
+    /* background: rgb(79, 18, 18); */
+    width: 100vw;
+    height: max-content;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    width: max-content;
+    height: max-content;
+    color: aliceblue;
+}
+.statistics {
+    font-size: large;
+    line-height: 25px;
+    text-align: center;
+}
+#winner {
+    width: max-content;
+    height: 2em;
 }
 .row {
     display: flex;
     flex-direction: row;
 }
 .cell {
-    width: 15vh;
-    height: 15vh;
+    width: var(--TAEcellSide);
+    height: var(--TAEcellSide);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid red;
+    border: var(--TAEgridBrdWidth) solid var(--TAEgridBrdCol);
+    overflow: hidden;
+    font-size: 2em;
+    font-weight: bolder;
+    font-family: garamond;
+    user-select: none;
+}
+.cell:hover {
+    cursor: pointer;
+    filter: invert(70%);
+    transition: 0.5s;
+}
+.oddCell {
+    background: var(--oddCellBG);
+}
+.evenCell {
+    background: var(--evenCellBG);
+}
+
+#cl1,
+#cl2,
+#cl3,
+#cl4,
+#cl5,
+#cl6,
+#cl7,
+#cl8,
+#cl9 {
+    visibility: hidden;
+    opacity: 0;
+    /* transition: 0.2s; */
+    /* transition: all 1s ease-out; */
+}
+
+/*# cl1: top-left, cl3: top-right, cl7: bottom-left, cl9: bottom-right */
+#cl1 {
+    border-radius: 10px 0 0 0;
+}
+#cl3 {
+    border-radius: 0 10px 0 0;
+}
+#cl9 {
+    border-radius: 0 0 10px 0;
+}
+#cl7 {
+    border-radius: 0 0 0 10px;
+}
+
+#cl1,
+#cl3,
+#cl9,
+#cl7 {
+    animation: appear1 1s linear 0.1s 1 normal forwards;
+}
+
+#cl2,
+#cl6,
+#cl8,
+#cl4 {
+    animation: appear2 1s linear 0.5s 1 normal forwards;
+}
+
+#cl5 {
+    animation: appear3 1s linear 1.5s 1 normal forwards;
+}
+
+
+@keyframes appear1 {
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes appear2 {
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@keyframes appear3 {
+    50% {
+        opacity: 0.9;
+    }
+
+    100% {
+        opacity: 1;
+        visibility: visible;
+    }
 }
