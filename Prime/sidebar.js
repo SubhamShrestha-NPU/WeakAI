@@ -40,7 +40,7 @@ function options(optName) {
                               <label><input type="radio" name="persona" value="Rude"> Rude</label><br/>
                               <label><input type="radio" name="persona" value="Polite"> Polite</label><br/>
                               <label><input type="radio" name="persona" value="Intelligent"> Intelligent</label></br>
-                              <button id="personaConfirm" class="mo-cf" onclick="updateMode">Confirm</button>`;
+                              <button id="personaConfirm" class="mo-cf" onclick="updateMode()">Confirm</button>`;
             setCheckedMode(); // Set the checked radio button based on localStorage
             break;
         case 'voice':
@@ -170,5 +170,5 @@ if (lightMode === 'active') {enableLightMode();}
 function toggleTheme() {
     lightMode = localStorage.getItem('lightMode');
     lightMode !== "active" ? enableLightMode() : disableLightMode();
-    console.log(localStorage.getItem('lightMode'));
+    //console.log(localStorage.getItem('lightMode'));
 }
