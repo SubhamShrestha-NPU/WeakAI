@@ -85,3 +85,10 @@ notes:
         --top-grid-bg: #F7E55E; /* top grid background color (light yellow) */
         --top-grid-brd: #F8D24F; /* top grid border color (soft yellow) */
 }
+
+@keyframes rotate {
+    to {
+        --deg: 360deg;
+        /* rotates the background 360 degrees */
+    }
+}
