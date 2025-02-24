@@ -16,6 +16,54 @@ let openNotePad = [];
 let hi = [];
 let bye = [];
 
+function random(min, max) {
+    return Math.random() * (max - min) + min;
+}
+class Blob {
+    constructor(ele) {
+        this.ele = ele;
+        this.size = ele.getBoundingClientRect().width;
+        this.x = random(0, window.innerWidth - this.size);
+        this.y = random(0, window.innerHeight - this.size);
+        this.vx = random(1.5, 2.5) * Math.random() > 0.5 ? 1 : -1;
+        this.vy = random(1.5, 2.5) * Math.random() > 0.5 ? 1 : -1;
+    }
+
+    update() {
+        this.x += this.vx;
+        this.y += this.vy;
+
+        if ((this.x > window.innerWidth - this.size) || (this.x < 0)) {
+            this.vx *= -1;
+        }
+        if ((this.y > window.innerHeight - this.size || (this.y < 0))) {
+            this.vy *= -1;
+        }
+    }
+
+    move() {
+        this.ele.style.transform = `translateX(${this.x}px) translateY(${this.y}px)`;
+    }
+}
+
+function initBlob() {
+    const blobEls = document.querySelectorAll('.blob');
+    const blobs = Array.from(blobEls).map(blobEl => new Blob(blobEl));
+
+    function render() {
+        blobs.forEach(blob => {
+            blob.update();
+            blob.move();
+        });
+        requestAnimationFrame(render);
+    }
+
+    requestAnimationFrame(render);
+}
+
+// Call the initBlob function to start the animation
+initBlob();
+
 // Fetch the JSON file once
 fetch('response.json')
     .then(response => response.json()) // Parse the JSON data

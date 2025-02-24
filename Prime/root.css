@@ -4,7 +4,7 @@ notes:
 -- /** : means the variable deals with svg elements
 -- /*! : means section
 -- /*# : means subsections
--- /*? : means
+-- /*? : means prototyping variable, can be should be altered for improvement. This includes initial generalizations, etc.
 -- /*& : means
 */
 
@@ -25,8 +25,9 @@ notes:
 
 :root {
     /* color palette */
-    --body-bg: linear-gradient(var(--deg), #282727, #4c4b4b); /* body background */
-    --logo-bg: conic-gradient(#000000, #4c4b4b00, #000000, #4c4b4b00, #000000, #4c4b4b00, #000000, #4c4b4b00, #000000); /* logo bg */
+    --body-bg: #1f1e1e; /* body background */
+    --logo-bg: conic-gradient(#8e8c8c, #4c4b4b00, #8e8c8c, #4c4b4b00, #8e8c8c, #4c4b4b00, #8e8c8c, #4c4b4b00, #8e8c8c); /* logo bg */
+    /* --logo-bg: rgb(255, 42, 0); */
     --base-text: #ffffff; /* common text color */
     --btn-bg: #00000000; /* transparent button background */
     --btn-color: #ffffff89; /* button text color */
@@ -58,18 +59,18 @@ notes:
 }
 
 .lightMode {
-    --body-bg: linear-gradient(var(--deg), #3e3838, #c7b2b2);
-    --logo-bg: conic-gradient(#0f0f0f, #5e5656, #0f0f0f, #5e5656, #0f0f0f, #5e5656, #0f0f0f, #5e5656, #0f0f0f);
+    --body-bg:  #c7b2b2;
+    --logo-bg: conic-gradient(#e15b5b, #00000000, #e15b5b, #00000000, #e15b5b, #00000000, #e15b5b, #00000000, #e15b5b);
     --base-text: #000000;
     --btn-bg: #00000000;
     --btn-color: #00000089;
-    --cmd-bg: #8e6a6a;
-    --sidePnl-bg: #98898981;
+    --cmd-bg: #d29a9a2f;
+    --sidePnl-bg: #bd949481;
     --sidePnl-opt-bg: #ffffff00;
     --sidePnl-opt-bg-hvr: #e0e0e033;
     --closeBtn-color: #1f1f1f;
     --mod-bg: #6659593f;
-    --mo-cf-bg: #b48585;
+    --mo-cf-bg: #c59292;
     --mo-cf-bg-hvr: #fcb1b1aa;
     --radio-bg: #ffe5e5;
     --radio-bg-checked: #ff6b6b;
