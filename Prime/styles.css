@@ -27,7 +27,7 @@ header {
 }
 /** customization section */
 body {
-    background: var(--body-bg); /* Set background gradient and properties */
+    /* background: var(--body-bg); */ /* Set background gradient and properties */
     background-size: 100% 100%;
     background-attachment: fixed; /* Fixed background */
 
@@ -41,6 +41,7 @@ body {
     animation: rotate 10s infinite linear; /* Rotate background */ 
     overflow: hidden;/* Hide overflow content */
     position: relative; 
+    background: var(--body-bg);
 }
 #body {
     display: flex; /* Flex container for body content */
@@ -51,6 +52,40 @@ body {
     position: absolute; 
     z-index: 100;
 }
+.blobs {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 90%;
+    z-index: -100;
+}
+.blobsGlass {
+    position: absolute;
+    top: -10vh;
+    left: -10vw;
+    width: 200%;
+    height: 200%;
+    z-index: 50;
+    backdrop-filter:blur(100px);
+    -webkit-backdrop-filter: blur(100px);
+}
+.blob {
+    width: 300px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    display: inline-block;
+}
+.blob--blue {
+    background: #1b2ba4;
+}
+.blob--purple {
+    background: #6116c2;
+}
+.blob--pink {
+    background: #d81ed8;
+}
+
 #theme-switch {
     background: var(--btn-bg);
     color: var(--base-text);
@@ -91,6 +126,9 @@ body {
     border-radius: 50%; /* ensures proper circle */
     align-self: flex-start;
     margin-top:50px;
+    z-index: 100 !important;
+    filter: contrast(1) brightness(1) blur(5px);
+    /* backdrop-filter: blur(100px); */
 
     animation: popUp 2s cubic-bezier(0.68, -0.55, 0.27, 1.55) 1 forwards, /* makes the disc appear, and makes it round once in the same direction as the background */
                retroRotate 10s infinite linear; /* makes the disc rotate infinitely anti-clockwise */
@@ -120,6 +158,7 @@ body {
     width: 20vw;
     margin: 10px auto 10px auto;
     text-align: center;
+    z-index: 100 !important;
 } /* basic styling for the section, which holds the introduction message */
 
 #bar::after {
