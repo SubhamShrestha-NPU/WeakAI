@@ -126,6 +126,7 @@ body {
     border-radius: 50%; /* ensures proper circle */
     align-self: flex-start;
     margin-top:50px;
+    margin-bottom: 10px;
     z-index: 100 !important;
     filter: contrast(1) brightness(1) blur(5px);
     /* backdrop-filter: blur(100px); */
@@ -156,7 +157,7 @@ body {
     position: relative;
     height: 5vh;
     width: 20vw;
-    margin: 10px auto 10px auto;
+    margin: 15px auto 10px auto;
     text-align: center;
     z-index: 100 !important;
 } /* basic styling for the section, which holds the introduction message */

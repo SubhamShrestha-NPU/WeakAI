@@ -1,0 +1,164 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+}
+.board {
+    display: grid;
+    grid-template-rows: repeat(15, 1fr);
+    grid-template-columns: repeat(15, 1fr);
+    width: 30em;
+    aspect-ratio: 1;
+}
+
+.home {
+    border: 1px solid black;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    position: relative;
+
+}
+/* .green {
+    background: green;
+}
+.yellow {
+    background: yellow;
+}
+.red {
+    background: red;
+}
+.blue {
+    background: blue;
+} */
+#home-green {
+    background: green;
+    grid-area: 1 / 1 / 7 / 7;
+}
+#home-yellow {
+    background: yellow;
+    grid-area: 7 / 10 / 1 / -1;
+}
+#home-red {
+    background: red;
+    grid-area: 10 / 10 / -1 / -1;
+}
+#home-blue {
+    background: blue;
+    grid-area: 16 / -16 / 10 / -10;
+}
+
+#checkpoint {
+    background: #ed0588;
+    grid-area: 7 / 7 / 10 / 10;
+}
+
+.tile {
+    /* background: #000; */
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px black;
+}
+
+#tile-2,
+#tile-68,
+#tile-69,
+#tile-70,
+#tile-71,
+#tile-72 {
+    background: green;
+    color: black;
+}
+#tile-20,
+#tile-14,
+#tile-15,
+#tile-16,
+#tile-17,
+#tile-18 {
+    background: yellow;
+    color: black;
+}
+#tile-38,
+#tile-32,
+#tile-33,
+#tile-34,
+#tile-35,
+#tile-36 {
+    background: red;
+    color: black;
+}
+#tile-56,
+#tile-50,
+#tile-51,
+#tile-52,
+#tile-53,
+#tile-54 {
+    background: blue;
+    color: black;
+}
+
+
+.piece-container {
+    position: relative;
+    background: #000000;
+    aspect-ratio: 1;
+    grid-area: 2 / 2 / -2 / -2;
+    display: grid; /* No need of specifying rows and columns */
+}
+
+.piece {
+    position: absolute;
+    width: 1.8rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin: 10px;
+    background: #fff;
+    z-index: 1;
+}
+
+.piece-1 {
+    align-self: self-start;
+    justify-self: self-start;
+}
+.piece-2 {
+    align-self: self-end;
+    justify-self: self-start;
+}
+.piece-3 {
+    align-self: self-end;
+    justify-self: self-end;
+}
+.piece-4 {
+    align-self: self-start;
+    justify-self: self-end;
+}
+
+#green-1,
+#green-2,
+#green-3,
+#green-4 {
+    background: rgb(63, 214, 63);
+}
+#yellow-1,
+#yellow-2,
+#yellow-3,
+#yellow-4 {
+    background: rgb(212, 206, 6);
+}
+#red-1,
+#red-2,
+#red-3,
+#red-4 {
+    background: rgb(189, 10, 10);
+}
+#blue-1,
+#blue-2,
+#blue-3,
+#blue-4 {
+    background: rgb(1, 1, 143);
+}

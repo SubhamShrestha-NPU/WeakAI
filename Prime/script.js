@@ -8,7 +8,7 @@ let introductory = [];
 let meaningOfLife = [];
 let repeatAfterMe = [];
 let openWhatsApp = [];
-let openOutLook = [];
+let openOutlook = [];
 let openSkype = [];
 let openOneNote = [];
 let openCalendar = [];
@@ -77,7 +77,7 @@ fetch('response.json')
         meaningOfLife = data.meaningOfLife;
         repeatAfterMe = data.repeatAfterMe;
         openWhatsApp = data.openWhatsApp;
-        openOutLook = data.openOutLook;
+        openOutlook = data.openOutlook;
         openSkype = data.openSkype;
         openOneNote = data.openOneNote;
         openCalendar = data.openCalendar;
@@ -194,7 +194,7 @@ function speak() {
         window.location.href = 'whatsapp://send';
         print(text, x);
     } else if (text === "Open Outlook") {
-        x = openOutLook[y];
+        x = openOutlook[y];
         window.location.href = 'mailto:';
         print(text, x);
     } else if (text === "Open Skype") {
