@@ -21,7 +21,7 @@
             <div class="blob blob--pink"></div>
             <div class="blob blob--pink"></div>
         </div>
-    </div>
+    </div> <!-- Contains background elements -->
     <header>
         <nav>
             <div id="sidepanel">
@@ -31,27 +31,26 @@
                 <button class="options" onclick="options('theme')">Themes</button>
                 <button class="options" onclick="options('games')">Games</button>
                 <button class="options" onclick="options('tutorial')">How To</button>
-            </div>
+            </div> <!-- Sidepanel elements -->
             <div id="modalTray">
                 <div id="modal"></div>
-            </div>
+            </div> <!-- Modal elements -->
             <button class="openBtn" onclick="openNav()">
                 <svg width="150" height="102" viewBox="0 0 150 102" id="hamburger-img" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M0 11.9048C0 5.32995 5.32994 0 11.9048 0H138.095C144.67 0 150 5.32995 150 11.9048C150 18.4796 144.67 23.8095 138.095 23.8095H11.9048C5.32994 23.8095 0 18.4796 0 11.9048ZM0 50.7143C0 44.1395 5.32994 38.8095 11.9048 38.8095H138.095C144.67 38.8095 150 44.1395 150 50.7143C150 57.2891 144.67 62.619 138.095 62.619H11.9048C5.32994 62.619 0 57.2891 0 50.7143ZM11.9048 77.619C5.32994 77.619 0 82.949 0 89.5238C0 96.0986 5.32994 101.429 11.9048 101.429H138.095C144.67 101.429 150 96.0986 150 89.5238C150 82.949 144.67 77.619 138.095 77.619H11.9048Z" />
                 </svg>
-            </button>
+            </button> <!-- Hamburger menu icon -->
         </nav>
     </header>
 
     <main id="body">
-        <div id="logo"></div>
-        <div id="bar"></div> <br />
+        <div id="logo"></div> <!-- Rotating disc -->
+        <div id="bar"></div> <br /> <!-- Welcome message -->
         <input type="text" name="command" id="command" value=""><br /> <!-- Input field for user command -->
-        <button onclick="speak()" id="btn"> <!-- button to trigger speak() function -->
+        <button onclick="speak()" id="btn"> 
             Press Enter
-        </button>
-        <p id="hi"></p>
+        </button> <!-- button to trigger speak() function -->
     </main>
 
     <script src="script.js" defer></script>
