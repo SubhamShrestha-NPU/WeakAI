@@ -73,7 +73,7 @@ Descartes isn’t just a one-size-fits-all assistant. It has **three unique mode
 - **Choose Personality:** Pick a personality for Descartes and watch how it interacts with you.
 
 ## License 📜
-This project is licensed under the **MIT License**. Feel free to modify and use Descartes however you like, while enjoying all the cool features it brings!
+This project is licensed under the **MIT License**. Feel free to modify and use Descartes however you like, while enjoying all the cool features it brings! It is completely open-source; this means you can feel free to copy, modify, and distribute it without running into any issues.
 
 ---
 
@@ -82,7 +82,9 @@ This project is licensed under the **MIT License**. Feel free to modify and use 
 ---
 
 ### **Note:**  
-Descartes uses JavaScript to simulate an AI experience. The voice responses come from your browser’s text-to-speech feature, and the web search uses **DuckDuckGo**. If you want more advanced features, you can activate the **Gemini Freemium API**. Just edit the code to swap between DuckDuckGo and Gemini whenever you want. 💻
+- Descartes uses JavaScript to simulate an AI experience. The voice responses come from your browser’s text-to-speech feature, and the web search uses **DuckDuckGo**. If you want more advanced features, you can activate the **Gemini Freemium API**. Just edit the code to swap between DuckDuckGo and Gemini whenever you want. 💻
+- All the aforementioned plans are framework for future version of Descartes. Many features are still not available and subject to development.
+- The `main` branch is just a dry a skeleton of Descartes. `upgradation` branch contains a juicier version with dynamic fluid background, pheripheral developments, etc.
 
 
 **Predefined Responses:**  
