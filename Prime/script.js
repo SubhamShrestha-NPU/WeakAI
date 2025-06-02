@@ -94,8 +94,17 @@ let z = Number(localStorage.getItem('voice'));
 /* LIVE HANDLING */
 function initializeVoices() {
     voices = window.speechSynthesis.getVoices();
-    selectedVoice = voices.find(voice => voice.name === 'Google UK English Male') || voices[z];
+    console.log('Available voices:', voices.length); // Debug for GitHub Pages
+    selectedVoice = voices.find(voice => voice.name === 'Google UK English Male') || voices[z] || voices[0];
+    console.log('Selected voice:', selectedVoice ? selectedVoice.name : 'No voice available');
 }
+
+// Initialize voices with multiple fallbacks for GitHub Pages
+initializeVoices();
+window.speechSynthesis.onvoiceschanged = initializeVoices;
+
+// Add a small delay for GitHub Pages voice loading
+setTimeout(initializeVoices, 100);
 
 function speak() {
     const text = document.getElementById('command').value.trim();
@@ -273,17 +282,77 @@ window.speechSynthesis.onvoiceschanged = function () {
 
 
 function speakText(text) {
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.voice = selectedVoice;
-    utterance.lang = 'en-US'; // Set the language
-    utterance.pitch = 1.5; // Set the pitch
-    utterance.rate = 1.5; // Set the rate of speech
-    utterance.volume = 1; // Set the volume to maximum
-
-    window.speechSynthesis.speak(utterance);
+    // GitHub Pages compatibility checks
+    if (!window.speechSynthesis) {
+        console.error('Speech synthesis not supported');
+        return;
+    }
+    
+    if (!text || text.trim() === '') {
+        console.warn('No text to speak');
+        return;
+    }
+    
+    // Stop any ongoing speech (important for GitHub Pages)
+    window.speechSynthesis.cancel();
+    
+    // Add small delay for GitHub Pages
+    setTimeout(() => {
+        const utterance = new SpeechSynthesisUtterance(text.toString());
+        
+        // Enhanced voice selection for GitHub Pages
+        if (selectedVoice) {
+            utterance.voice = selectedVoice;
+        } else if (voices && voices.length > 0) {
+            utterance.voice = voices[0];
+            console.log('Using fallback voice:', voices[0].name);
+        }
+        
+        utterance.lang = 'en-US';
+        utterance.pitch = 1.5;
+        utterance.rate = 1.5;
+        utterance.volume = 1;
+        
+        // GitHub Pages error handling
+        utterance.onerror = function(event) {
+            console.error('Speech error:', event.error);
+            // Try again with default voice
+            if (event.error === 'voice-unavailable') {
+                const fallbackUtterance = new SpeechSynthesisUtterance(text);
+                fallbackUtterance.lang = 'en-US';
+                window.speechSynthesis.speak(fallbackUtterance);
+            }
+        };
+        
+        utterance.onstart = function() {
+            console.log('Speaking:', text.substring(0, 30) + '...');
+        };
+        
+        utterance.onend = function() {
+            console.log('Speech completed');
+        };
+        
+        console.log('Attempting speech synthesis...');
+        window.speechSynthesis.speak(utterance);
+    }, 50); // Small delay helps with GitHub Pages
 }
 const button = document.getElementById('btn');
+
+// GitHub Pages voice activation - ensure first interaction enables speech
+let speechInitialized = false;
+function ensureSpeechReady() {
+    if (!speechInitialized) {
+        // Silent utterance to initialize speech for GitHub Pages
+        const testUtterance = new SpeechSynthesisUtterance('');
+        testUtterance.volume = 0;
+        window.speechSynthesis.speak(testUtterance);
+        speechInitialized = true;
+        console.log('Speech synthesis initialized for GitHub Pages');
+    }
+}
+
 button.addEventListener('click', () => {
+    ensureSpeechReady(); // Ensure speech is ready for GitHub Pages
     const keyEvent = new KeyboardEvent('keydown', {
         key: 'Enter',
         keyCode: 13,
@@ -291,9 +360,11 @@ button.addEventListener('click', () => {
     });
     document.dispatchEvent(keyEvent);
 });
+
 // Add event listener for keydown event
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.keyCode === 13) {
+        ensureSpeechReady(); // Ensure speech is ready for GitHub Pages
         button.click();
     }
 });
