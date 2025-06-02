@@ -86,6 +86,17 @@ body {
     background: #d81ed8;
 }
 
+/* Light mode blob colors */
+.lightMode .blob--blue {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+}
+.lightMode .blob--purple {
+    background: linear-gradient(135deg, #a29bfe 0%, #6c5ce7 100%);
+}
+.lightMode .blob--pink {
+    background: linear-gradient(135deg, #fd79a8 0%, #e84393 100%);
+}
+
 #theme-switch {
     background: var(--btn-bg);
     color: var(--base-text);
@@ -287,6 +298,98 @@ button {
 #command:active, #command:focus {
     border: 0; /* Remove border when input field is active or focused */
     outline: none;
+}
+
+/* Light mode specific enhancements */
+.lightMode #command {
+    background: rgba(255, 255, 255, 0.9);
+    color: #2c3e50;
+    border: 1px solid rgba(74, 144, 226, 0.3);
+    box-shadow: 0 2px 8px rgba(74, 144, 226, 0.1);
+}
+
+.lightMode #command:focus {
+    border: 1px solid #4a90e2;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+}
+
+.lightMode #command::placeholder {
+    color: #6c757d;
+}
+
+.lightMode #btn {
+    color: #495057;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px 16px;
+}
+
+.lightMode #btn:hover {
+    background: rgba(74, 144, 226, 0.1);
+    color: #4a90e2;
+}
+
+/* Light mode specific enhancements for glassmorphism and better contrast */
+.lightMode .blobsGlass {
+    backdrop-filter: blur(80px) brightness(1.1) saturate(1.2);
+    -webkit-backdrop-filter: blur(80px) brightness(1.1) saturate(1.2);
+}
+
+.lightMode #sidepanel {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px) brightness(1.05);
+    border: 1px solid rgba(74, 144, 226, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.lightMode #sidepanel .options {
+    background: rgba(248, 249, 250, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.lightMode #sidepanel .options:hover {
+    background: rgba(74, 144, 226, 0.15);
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.15);
+}
+
+.lightMode #modal {
+    background: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(74, 144, 226, 0.2);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.1);
+}
+
+.lightMode #logo {
+    filter: contrast(1.2) brightness(1.1) blur(3px);
+    box-shadow: 0 0 30px rgba(74, 144, 226, 0.3);
+}
+
+/* Light mode text and animation enhancements */
+.lightMode #bar::after {
+    color: #2c3e50;
+    text-shadow: 0 2px 4px rgba(74, 144, 226, 0.1);
+    font-weight: 500;
+}
+
+.lightMode #hamburger-img {
+    filter: drop-shadow(0 2px 4px rgba(74, 144, 226, 0.2));
+}
+
+.lightMode #hamburger-img:hover {
+    filter: drop-shadow(0 4px 8px rgba(74, 144, 226, 0.3));
+}
+
+.lightMode .closeBtn {
+    color: #495057;
+    font-weight: 600;
+}
+
+.lightMode .closeBtn:hover {
+    color: #2c3e50;
+    background: rgba(74, 144, 226, 0.1);
+    border-radius: 50%;
 }
 
 /** Other extensions  */

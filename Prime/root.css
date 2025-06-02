@@ -26,7 +26,7 @@ notes:
 :root {
     /* color palette */
     --body-bg: #1f1e1e; /* body background */
-    --logo-bg: conic-gradient(#8e8c8c, #4c4b4b00, #8e8c8c, #4c4b4b00, #8e8c8c, #4c4b4b00, #8e8c8c, #4c4b4b00, #8e8c8c); /* logo bg */
+    --logo-bg: conic-gradient(#2c3e50, #4c4b4b00, #2c3e50, #4c4b4b00, #2c3e50, #4c4b4b00, #2c3e50, #4c4b4b00, #2c3e50); /* logo bg */
     /* --logo-bg: rgb(255, 42, 0); */
     --base-text: #ffffff; /* common text color */
     --btn-bg: #00000000; /* transparent button background */
@@ -59,23 +59,24 @@ notes:
 }
 
 .lightMode {
-    --body-bg:  #c7b2b2;
-    --logo-bg: conic-gradient(#e15b5b, #00000000, #e15b5b, #00000000, #e15b5b, #00000000, #e15b5b, #00000000, #e15b5b);
-    --base-text: #000000;
+    --body-bg: radial-gradient(ellipse at top left, #e3f2fd 0%, #bbdefb 25%, #90caf9 50%, #64b5f6 75%, #42a5f5 100%), 
+               linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(240,248,255,0.6) 50%, rgba(225,245,254,0.4) 100%);
+    --logo-bg: conic-gradient(#4a90e2, #ffffff00, #4a90e2, #ffffff00, #4a90e2, #ffffff00, #4a90e2, #ffffff00, #4a90e2);
+    --base-text: #2c3e50;
     --btn-bg: #00000000;
-    --btn-color: #00000089;
-    --cmd-bg: #d29a9a2f;
-    --sidePnl-bg: #bd949481;
-    --sidePnl-opt-bg: #ffffff00;
-    --sidePnl-opt-bg-hvr: #e0e0e033;
-    --closeBtn-color: #1f1f1f;
-    --mod-bg: #6659593f;
-    --mo-cf-bg: #c59292;
-    --mo-cf-bg-hvr: #fcb1b1aa;
-    --radio-bg: #ffe5e5;
-    --radio-bg-checked: #ff6b6b;
-    --radio-bg-hvr: #e88888;
-    --svg-icn: #150101;
+    --btn-color: #495057aa;
+    --cmd-bg: #ffffff4f;
+    --sidePnl-bg: #ffffff25;
+    --sidePnl-opt-bg: #f8f9fa00;
+    --sidePnl-opt-bg-hvr: #e9ecef66;
+    --closeBtn-color: #495057;
+    --mod-bg: #ffffff30;
+    --mo-cf-bg: #6c757d;
+    --mo-cf-bg-hvr: #5a6268;
+    --radio-bg: #f8f9fa;
+    --radio-bg-checked: #4a90e2;
+    --radio-bg-hvr: #e9ecef;
+    --svg-icn: #495057;
     /*! Ludo */
         /*# Ludo Banner */
         --btm-coin: #4C9F50; /* bottom right coin color (green) */
