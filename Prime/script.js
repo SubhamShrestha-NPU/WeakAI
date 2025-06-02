@@ -153,10 +153,9 @@ function speak() {
     } else if (text === "Where am I now" || text === "Where am I now?") {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
-                function (position) {
-                    const latitude = position.coords.latitude;
+                function (position) {                    const latitude = position.coords.latitude;
                     const longitude = position.coords.longitude;
-                    const apiKey = 'CONFIG.OPENCAGE_API_KEY'; // Your OpenCage API key
+                    const apiKey = CONFIG.OPENCAGE_API_KEY; // Load from config
                     const url = `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${apiKey}`;
 
                     fetch(url)
