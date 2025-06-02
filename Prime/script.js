@@ -66,8 +66,15 @@ initBlob();
 
 // Fetch the JSON file once
 fetch('response.json')
-    .then(response => response.json()) // Parse the JSON data
+    .then(response => {
+        console.log('JSON fetch response status:', response.status);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
     .then(data => {
+        console.log('JSON data loaded successfully:', Object.keys(data));
         // Assign arrays to variables
         empty = data.empty;
         offensive = data.offensive;
@@ -84,8 +91,31 @@ fetch('response.json')
         openNotePad = data.openNotePad;
         hi = data.hi;
         bye = data.bye;
+        
+        console.log('Response arrays loaded - hi array length:', hi ? hi.length : 'undefined');
     })
-    .catch(error => console.error('Error fetching JSON:', error));
+    .catch(error => {
+        console.error('Error fetching JSON:', error);
+        console.error('Falling back to default responses');
+        
+        // Fallback responses for GitHub Pages
+        empty = ["Please type something!", "I need input to respond!", "What would you like to ask?"];
+        hi = ["Hello there!", "Hi! How can I help you?", "Greetings! What can I do for you?"];
+        bye = ["Goodbye!", "See you later!", "Take care!"];
+        affirmative = ["Thank you!", "I appreciate that!", "Glad to help!"];
+        offensive = ["Let's keep this respectful", "Please be polite", "I'm here to help"];
+        // Set other arrays to prevent undefined errors
+        nonsensicalMath = ["That doesn't look like valid math"];
+        introductory = ["I'm Descartes, your AI assistant"];
+        meaningOfLife = ["42, of course!"];
+        repeatAfterMe = ["I'll repeat what you say"];
+        openWhatsApp = ["Opening WhatsApp"];
+        openOutlook = ["Opening Outlook"];
+        openSkype = ["Opening Skype"];
+        openOneNote = ["Opening OneNote"];
+        openCalendar = ["Opening Calendar"];
+        openNotePad = ["Opening Notepad"];
+    });
     
 let voices = [];
 let selectedVoice;
