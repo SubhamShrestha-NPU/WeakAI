@@ -66,15 +66,8 @@ initBlob();
 
 // Fetch the JSON file once
 fetch('response.json')
-    .then(response => {
-        console.log('JSON fetch response status:', response.status);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        return response.json();
-    })
+    .then(response => response.json()) // Parse the JSON data
     .then(data => {
-        console.log('JSON data loaded successfully:', Object.keys(data));
         // Assign arrays to variables
         empty = data.empty;
         offensive = data.offensive;
@@ -91,31 +84,8 @@ fetch('response.json')
         openNotePad = data.openNotePad;
         hi = data.hi;
         bye = data.bye;
-        
-        console.log('Response arrays loaded - hi array length:', hi ? hi.length : 'undefined');
     })
-    .catch(error => {
-        console.error('Error fetching JSON:', error);
-        console.error('Falling back to default responses');
-        
-        // Fallback responses for GitHub Pages
-        empty = ["Please type something!", "I need input to respond!", "What would you like to ask?"];
-        hi = ["Hello there!", "Hi! How can I help you?", "Greetings! What can I do for you?"];
-        bye = ["Goodbye!", "See you later!", "Take care!"];
-        affirmative = ["Thank you!", "I appreciate that!", "Glad to help!"];
-        offensive = ["Let's keep this respectful", "Please be polite", "I'm here to help"];
-        // Set other arrays to prevent undefined errors
-        nonsensicalMath = ["That doesn't look like valid math"];
-        introductory = ["I'm Descartes, your AI assistant"];
-        meaningOfLife = ["42, of course!"];
-        repeatAfterMe = ["I'll repeat what you say"];
-        openWhatsApp = ["Opening WhatsApp"];
-        openOutlook = ["Opening Outlook"];
-        openSkype = ["Opening Skype"];
-        openOneNote = ["Opening OneNote"];
-        openCalendar = ["Opening Calendar"];
-        openNotePad = ["Opening Notepad"];
-    });
+    .catch(error => console.error('Error fetching JSON:', error));
     
 let voices = [];
 let selectedVoice;
@@ -124,17 +94,8 @@ let z = Number(localStorage.getItem('voice'));
 /* LIVE HANDLING */
 function initializeVoices() {
     voices = window.speechSynthesis.getVoices();
-    console.log('Available voices:', voices.length); // Debug for GitHub Pages
-    selectedVoice = voices.find(voice => voice.name === 'Google UK English Male') || voices[z] || voices[0];
-    console.log('Selected voice:', selectedVoice ? selectedVoice.name : 'No voice available');
+    selectedVoice = voices.find(voice => voice.name === 'Google UK English Male') || voices[z];
 }
-
-// Initialize voices with multiple fallbacks for GitHub Pages
-initializeVoices();
-window.speechSynthesis.onvoiceschanged = initializeVoices;
-
-// Add a small delay for GitHub Pages voice loading
-setTimeout(initializeVoices, 100);
 
 function speak() {
     const text = document.getElementById('command').value.trim();
@@ -312,77 +273,17 @@ window.speechSynthesis.onvoiceschanged = function () {
 
 
 function speakText(text) {
-    // GitHub Pages compatibility checks
-    if (!window.speechSynthesis) {
-        console.error('Speech synthesis not supported');
-        return;
-    }
-    
-    if (!text || text.trim() === '') {
-        console.warn('No text to speak');
-        return;
-    }
-    
-    // Stop any ongoing speech (important for GitHub Pages)
-    window.speechSynthesis.cancel();
-    
-    // Add small delay for GitHub Pages
-    setTimeout(() => {
-        const utterance = new SpeechSynthesisUtterance(text.toString());
-        
-        // Enhanced voice selection for GitHub Pages
-        if (selectedVoice) {
-            utterance.voice = selectedVoice;
-        } else if (voices && voices.length > 0) {
-            utterance.voice = voices[0];
-            console.log('Using fallback voice:', voices[0].name);
-        }
-        
-        utterance.lang = 'en-US';
-        utterance.pitch = 1.5;
-        utterance.rate = 1.5;
-        utterance.volume = 1;
-        
-        // GitHub Pages error handling
-        utterance.onerror = function(event) {
-            console.error('Speech error:', event.error);
-            // Try again with default voice
-            if (event.error === 'voice-unavailable') {
-                const fallbackUtterance = new SpeechSynthesisUtterance(text);
-                fallbackUtterance.lang = 'en-US';
-                window.speechSynthesis.speak(fallbackUtterance);
-            }
-        };
-        
-        utterance.onstart = function() {
-            console.log('Speaking:', text.substring(0, 30) + '...');
-        };
-        
-        utterance.onend = function() {
-            console.log('Speech completed');
-        };
-        
-        console.log('Attempting speech synthesis...');
-        window.speechSynthesis.speak(utterance);
-    }, 50); // Small delay helps with GitHub Pages
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.voice = selectedVoice;
+    utterance.lang = 'en-US'; // Set the language
+    utterance.pitch = 1.5; // Set the pitch
+    utterance.rate = 1.5; // Set the rate of speech
+    utterance.volume = 1; // Set the volume to maximum
+
+    window.speechSynthesis.speak(utterance);
 }
 const button = document.getElementById('btn');
-
-// GitHub Pages voice activation - ensure first interaction enables speech
-let speechInitialized = false;
-function ensureSpeechReady() {
-    if (!speechInitialized) {
-        // Silent utterance to initialize speech for GitHub Pages
-        const testUtterance = new SpeechSynthesisUtterance('');
-        testUtterance.volume = 0;
-        window.speechSynthesis.speak(testUtterance);
-        speechInitialized = true;
-        console.log('Speech synthesis initialized for GitHub Pages');
-    }
-}
-
 button.addEventListener('click', () => {
-    ensureSpeechReady(); // Ensure speech is ready for GitHub Pages
     const keyEvent = new KeyboardEvent('keydown', {
         key: 'Enter',
         keyCode: 13,
@@ -390,11 +291,9 @@ button.addEventListener('click', () => {
     });
     document.dispatchEvent(keyEvent);
 });
-
 // Add event listener for keydown event
 document.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.keyCode === 13) {
-        ensureSpeechReady(); // Ensure speech is ready for GitHub Pages
         button.click();
     }
 });
